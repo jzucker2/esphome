@@ -15,3 +15,4 @@ void LokiComponent::dump_config() { ESP_LOGCONFIG(TAG, "Loki component"); }
 
 }  // namespace loki
 }  // namespace esphome
+#endif
