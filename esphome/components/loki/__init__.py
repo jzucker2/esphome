@@ -1,6 +1,6 @@
 import esphome.codegen as cg
 import esphome.config_validation as cv
-from esphome.const import CONF_ID, CONF_LOKI_HOST
+from esphome.const import CONF_ID
 
 DEPENDENCIES = ["network"]
 
@@ -10,7 +10,7 @@ LokiComponent = loki_component_ns.class_("LokiComponent", cg.Component)
 CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(): cv.declare_id(LokiComponent),
-        cv.Optional(CONF_LOKI_HOST): cv.url,
+        cv.Optional("loki_host"): cv.url,
     }
 ).extend(cv.COMPONENT_SCHEMA)
 
