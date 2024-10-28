@@ -12,6 +12,8 @@ class LokiComponent : public Component {
   void setup() override;
   void loop() override;
   void dump_config() override;
+  /// Loki client setup priority
+  float get_setup_priority() const override;
 };
 
 }  // namespace loki
