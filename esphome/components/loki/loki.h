@@ -3,6 +3,8 @@
 #ifdef USE_NETWORK
 
 #include "esphome/core/component.h"
+#include "esphome/core/automation.h"
+#include "esphome/core/log.h"
 
 namespace esphome {
 namespace loki {
