@@ -6,9 +6,9 @@
 namespace esphome {
 namespace toto_ir {
 
-class FemineWashButton : public button::Button, public Parented<TotoIR> {
+class FeminineWashButton : public button::Button, public Parented<TotoIR> {
  public:
-  FemineWashButton() = default;
+  FeminineWashButton() = default;
 
  protected:
   void press_action() override;
