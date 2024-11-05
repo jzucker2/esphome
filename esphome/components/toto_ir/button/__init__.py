@@ -7,7 +7,7 @@ from .. import CONF_TOTO_ID, TotoIR, toto_ir_ns
 CODEOWNERS = ["@jzucker2"]
 RearWashButton = toto_ir_ns.class_("RearWashButton", button.Button)
 FeminineWashButton = toto_ir_ns.class_("FeminineWashButton", button.Button)
-FansButton = toto_ir_ns.class_("FansButton", button.Button)
+FanButton = toto_ir_ns.class_("FanButton", button.Button)
 StopButton = toto_ir_ns.class_("StopButton", button.Button)
 PowerButton = toto_ir_ns.class_("PowerButton", button.Button)
 
@@ -15,7 +15,7 @@ PowerButton = toto_ir_ns.class_("PowerButton", button.Button)
 # Toto IR buttons
 CONF_REAR_WASH = "rear_wash"
 CONF_FEMININE_WASH = "feminine_wash"
-CONF_FANS = "fans"
+CONF_FAN = "fan"
 CONF_STOP = "stop"
 CONF_POWER = "power"
 
@@ -33,8 +33,8 @@ CONFIG_SCHEMA = cv.Schema(
             FeminineWashButton,
             icon=ICON_SPRAY_BOTTLE,
         ),
-        cv.Optional(CONF_FANS): button.button_schema(
-            FansButton,
+        cv.Optional(CONF_FAN): button.button_schema(
+            FanButton,
             icon=ICON_SPRAY_BOTTLE,
         ),
         cv.Optional(CONF_STOP): button.button_schema(
@@ -53,7 +53,7 @@ async def to_code(config):
     for button_type in [
         CONF_REAR_WASH,
         CONF_FEMININE_WASH,
-        CONF_FANS,
+        CONF_FAN,
         CONF_STOP,
         CONF_POWER,
     ]:
