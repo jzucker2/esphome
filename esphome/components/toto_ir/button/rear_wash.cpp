@@ -1,4 +1,4 @@
-#include "self_cleaning.h"
+#include "rear_wash.h"
 
 namespace esphome {
 namespace toto_ir {
