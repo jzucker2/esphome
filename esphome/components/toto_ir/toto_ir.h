@@ -2,15 +2,19 @@
 #pragma once
 
 #include "esphome/core/component.h"
+#include "esphome/components/remote_base/remote_base.h"
+#include "esphome/components/remote_transmitter/remote_transmitter.h"
 
 namespace esphome {
 namespace toto_ir {
 
-class TotoIR : public Component {
+class TotoIR : public Component, public remote_base::RemoteTransmittable {
  public:
   void setup() override;
   void loop() override;
   void dump_config() override;
+  // general functions
+  void send_data();
   // functions
   void send_power_toggle();
   void send_rear_wash();
