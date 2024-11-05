@@ -12,7 +12,11 @@ class TotoIR : public Component {
   void loop() override;
   void dump_config() override;
   // functions
-  void start_self_cleaning();
+  void send_power_toggle();
+  void send_rear_wash();
+  void send_feminine_wash();
+  void send_start_fans();
+  void send_stop();
 };
 
 }  // namespace toto_ir
