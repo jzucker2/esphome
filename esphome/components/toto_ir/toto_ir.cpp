@@ -17,7 +17,7 @@ void TotoIR::send_rear_wash() { ESP_LOGI(TAG, "Sending rear wash request"); }
 void TotoIR::send_feminine_wash() { ESP_LOGI(TAG, "Sending feminine wash request"); }
 void TotoIR::send_start_fans() {
   ESP_LOGI(TAG, "Sending start fans request");
-  std::vector<int32_t> hvac_code;
+  std::vector<int32_t> fan_first_code;
   fan_first_code = {6019, -3010, 564, -575, 537, -1686, 538, -575,  563, -575,  537, -575,  562, -550,
                     537,  -601,  538, -574, 537, -576,  537, -575,  560, -578,  537, -1686, 538, -575,
                     563,  -575,  561, -551, 537, -575,  537, -575,  563, -576,  536, -576,  536, -576,
