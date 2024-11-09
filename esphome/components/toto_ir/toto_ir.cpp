@@ -21,7 +21,7 @@ void TotoIR::send_start_fans() {
   //  fan_first_code =
   // Call remote transmitter using selected code
   auto transmit = this->transmitter_->transmit();
-  auto data = call.get_data();
+  auto data = transmit.get_data();
   esphome::remote_base::RawTimings ir_code = {
       6019,  -3010, 564,  -575, 537,  -1686, 538,  -575, 563,   -575, 537,  -575, 562,  -550, 537,   -601,  538,
       -574,  537,   -576, 537,  -575, 560,   -578, 537,  -1686, 538,  -575, 563,  -575, 561,  -551,  537,   -575,
@@ -32,7 +32,7 @@ void TotoIR::send_start_fans() {
   data->set_carrier_frequency(38000);
   transmit.set_send_times(3);
   transmit.set_send_wait(40000);
-  call.perform();
+  transmit.perform();
   // auto call = id(my_remote_transmitter).transmit();
   //  esphome::remote_base::RemoteTransmitData data = { rc_code_1, rc_code_2 };
   //  esphome::remote_base::PioneerProtocol().encode(call.get_data(), data);
