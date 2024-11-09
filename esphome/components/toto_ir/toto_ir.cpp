@@ -28,8 +28,8 @@ void TotoIR::send_start_fans() {
   auto transmit = this->transmitter_->transmit();
   // auto call = id(my_remote_transmitter).transmit();
   esphome::remote_base::RemoteTransmitData *RTD;
-  RTD.set_data(fan_first_code);
-  RTD.set_carrier_frequency(38000);
+  RTD->set_data(fan_first_code);
+  RTD->set_carrier_frequency(38000);
   transmit.set_send_times(3);
   transmit.set_send_wait(40000);
   esphome::remote_base::RawAction<esphome::remote_base::RemoteTransmitData>().encode(RTD);
