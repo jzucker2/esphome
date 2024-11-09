@@ -17,24 +17,35 @@ void TotoIR::send_rear_wash() { ESP_LOGI(TAG, "Sending rear wash request"); }
 void TotoIR::send_feminine_wash() { ESP_LOGI(TAG, "Sending feminine wash request"); }
 void TotoIR::send_start_fans() {
   ESP_LOGI(TAG, "Sending start fans request");
-  std::vector<int32_t> fan_first_code;
-  fan_first_code = {6019, -3010, 564, -575, 537, -1686, 538, -575,  563, -575,  537, -575,  562, -550,
-                    537,  -601,  538, -574, 537, -576,  537, -575,  560, -578,  537, -1686, 538, -575,
-                    563,  -575,  561, -551, 537, -575,  537, -575,  563, -576,  536, -576,  536, -576,
-                    536,  -576,  563, -575, 560, -552,  536, -1714, 537, -1687, 537, -575,  561, -578,
-                    560,  -552,  560, -552, 536, -576,  587, -552,  535, -1688, 536, -1714, 537, -576,
-                    560,  -552,  559, -579, 536, -576,  536, -576,  536, -576,  536};
+  //  std::vector<int32_t> fan_first_code;
+  //  fan_first_code =
   // Call remote transmitter using selected code
   auto transmit = this->transmitter_->transmit();
-  // auto call = id(my_remote_transmitter).transmit();
-  esphome::remote_base::RemoteTransmitData *RTD;
-  RTD->set_data(fan_first_code);
-  RTD->set_carrier_frequency(38000);
+  auto data = call.get_data();
+  esphome::remote_base::RawTimings ir_code = {
+      6019,  -3010, 564,  -575, 537,  -1686, 538,  -575, 563,   -575, 537,  -575, 562,  -550, 537,   -601,  538,
+      -574,  537,   -576, 537,  -575, 560,   -578, 537,  -1686, 538,  -575, 563,  -575, 561,  -551,  537,   -575,
+      537,   -575,  563,  -576, 536,  -576,  536,  -576, 536,   -576, 563,  -575, 560,  -552, 536,   -1714, 537,
+      -1687, 537,   -575, 561,  -578, 560,   -552, 560,  -552,  536,  -576, 587,  -552, 535,  -1688, 536,   -1714,
+      537,   -576,  560,  -552, 559,  -579,  536,  -576, 536,   -576, 536,  -576, 536};
+  data->set_data(ir_code);
+  data->set_carrier_frequency(38000);
   transmit.set_send_times(3);
   transmit.set_send_wait(40000);
-  esphome::remote_base::RawAction<esphome::remote_base::RemoteTransmitData>().encode(RTD);
-  transmit.get_data(RTD);
-  transmit.perform();
+  call.perform();
+  // auto call = id(my_remote_transmitter).transmit();
+  //  esphome::remote_base::RemoteTransmitData data = { rc_code_1, rc_code_2 };
+  //  esphome::remote_base::PioneerProtocol().encode(call.get_data(), data);
+  // call.set_send_times(2);
+  // call.perform();
+  //  esphome::remote_base::RemoteTransmitData *RTD;
+  //  RTD->set_data(fan_first_code);
+  //  RTD->set_carrier_frequency(38000);
+  //  transmit.set_send_times(3);
+  //  transmit.set_send_wait(40000);
+  //  esphome::remote_base::RawAction<esphome::remote_base::RemoteTransmitData>().encode(RTD);
+  //  transmit.get_data(RTD);
+  //  transmit.perform();
 }
 void TotoIR::send_stop() { ESP_LOGI(TAG, "Sending stop request"); }
 
