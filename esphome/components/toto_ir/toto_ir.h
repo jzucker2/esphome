@@ -8,6 +8,8 @@
 namespace esphome {
 namespace toto_ir {
 
+using remote_base::RemoteTransmitterBase;
+
 class TotoIR : public Component, public remote_base::RemoteTransmittable {
  public:
   void setup() override;
