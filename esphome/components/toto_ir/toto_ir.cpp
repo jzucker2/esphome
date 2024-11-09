@@ -37,8 +37,8 @@ void TotoIR::send_stop() { ESP_LOGI(TAG, "Sending stop request"); }
 
 void TotoIR::transmit_(RawTimings &ir_code) {
   ESP_LOGD(TAG, "Sending ir_code");
-
-  auto transmit = this->transmitter_->transmit();
+  auto transmit = id(remote_transmitter).transmit();
+  // auto transmit = this->transmitter_->transmit();
   ESP_LOGD(TAG, "Sending ir_code got transmitter");
   auto data = transmit.get_data();
   data->set_data(ir_code);
