@@ -1,0 +1,20 @@
+remote_transmitter:
+  pin: 4
+  carrier_duty_percent: 50%
+
+toto_ir:
+  id: toto_ir_remote
+
+button:
+  - platform: toto_ir
+    toto_id: toto_ir_remote
+    rear_wash:
+      name: Toto IR Rear Wash
+    feminine_wash:
+      name: Toto IR Feminine Wash
+    fan:
+      name: Toto IR Fan
+    power:
+      name: Toto IR Power Toggle
+    stop:
+      name: Toto IR Stop
