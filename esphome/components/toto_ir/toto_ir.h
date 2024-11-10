@@ -15,20 +15,17 @@ namespace toto_ir {
 using remote_base::RemoteTransmitterBase;
 using remote_base::RawTimings;
 
-static const std::string DEFAULT_WATER_PRESSURE_STRING = "3";
+static const std::string DEFAULT_WATER_OPTION_STRING = "3";
 
-enum WaterPressureStruct : uint8_t {
-  WATER_PRESSURE_1 = 1,
-  WATER_PRESSURE_2 = 2,
-  WATER_PRESSURE_3 = 3,
-  WATER_PRESSURE_4 = 4,
-  WATER_PRESSURE_5 = 5
+enum WaterOptionsStruct : uint8_t {
+  WATER_OPTION_1 = 1,
+  WATER_OPTION_2 = 2,
+  WATER_OPTION_3 = 3,
+  WATER_OPTION_4 = 4,
+  WATER_OPTION_5 = 5
 };
-static const std::map<std::string, uint8_t> WATER_PRESSURE_TO_UINT{{"1", WATER_PRESSURE_1},
-                                                                   {"2", WATER_PRESSURE_2},
-                                                                   {"3", WATER_PRESSURE_3},
-                                                                   {"4", WATER_PRESSURE_4},
-                                                                   {"5", WATER_PRESSURE_5}};
+static const std::map<std::string, uint8_t> WATER_OPTION_TO_UINT{
+    {"1", WATER_OPTION_1}, {"2", WATER_OPTION_2}, {"3", WATER_OPTION_3}, {"4", WATER_OPTION_4}, {"5", WATER_OPTION_5}};
 
 class TotoIR : public Component, public remote_base::RemoteTransmittable {
  public:
@@ -47,7 +44,7 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   void send_start_fans();
   void send_stop();
   void set_water_pressure(const std::string &state);
-  uint8_t current_water_pressure{WATER_PRESSURE_3};
+  uint8_t current_water_pressure{WATER_OPTION_3};
 #ifdef USE_SELECT
   select::Select *water_pressure_selector_{nullptr};
 #endif

@@ -9,8 +9,8 @@ static const char *TAG = "toto_ir";
 
 void TotoIR::setup() {
   ESP_LOGCONFIG(TAG, "Setting up TotoIR ...");
-  this->set_water_pressure(DEFAULT_WATER_PRESSURE_STRING);
-  this->water_pressure_selector_->publish_state(DEFAULT_WATER_PRESSURE_STRING);
+  this->set_water_pressure(DEFAULT_WATER_OPTION_STRING);
+  this->water_pressure_selector_->publish_state(DEFAULT_WATER_OPTION_STRING);
 }
 
 void TotoIR::loop() {}
@@ -19,7 +19,7 @@ void TotoIR::dump_config() {
   ESP_LOGCONFIG(TAG, "Toto IR");
 #ifdef USE_SELECT
   ESP_LOGCONFIG(TAG, "Toto IR Select:");
-  LOG_SELECT(TAG, "  Operating Mode", this->water_pressure_selector_);
+  LOG_SELECT(TAG, "Water Pressure", this->water_pressure_selector_);
 #endif
 }
 
@@ -72,19 +72,19 @@ void TotoIR::transmit_(RawTimings ir_code) {
 void TotoIR::set_water_pressure(const std::string &state) {
   // If unsupported firmware ignore mode select
   ESP_LOGD(TAG, "Set water pressure!!!!");
-  this->current_water_pressure = WATER_PRESSURE_TO_UINT.at(state);
+  this->current_water_pressure = WATER_OPTION_TO_UINT.at(state);
   this->water_pressure_selector_->publish_state(state);
-  if (current_water_pressure == WATER_PRESSURE_1) {
+  if (current_water_pressure == WATER_OPTION_1) {
     ESP_LOGD(TAG, "lowest water pressure");
-  } else if (current_water_pressure == WATER_PRESSURE_2) {
+  } else if (current_water_pressure == WATER_OPTION_2) {
     ESP_LOGD(TAG, "2nd lowest water pressure");
-  } else if (current_water_pressure == WATER_PRESSURE_3) {
+  } else if (current_water_pressure == WATER_OPTION_3) {
     ESP_LOGD(TAG, "middle water pressure");
-    this->transmit_(TOTO_IR_FIRST_INCREASE_WATER_PRESSURE_TIMINGS);
-    this->transmit_(TOTO_IR_SECOND_INCREASE_WATER_PRESSURE_TIMINGS);
-  } else if (current_water_pressure == WATER_PRESSURE_4) {
+    this->transmit_(TOTO_IR_FIRST_INCREASE_WATER_OPTION_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_INCREASE_WATER_OPTION_TIMINGS);
+  } else if (current_water_pressure == WATER_OPTION_4) {
     ESP_LOGD(TAG, "higher water pressure");
-  } else if (current_water_pressure == WATER_PRESSURE_5) {
+  } else if (current_water_pressure == WATER_OPTION_5) {
     ESP_LOGD(TAG, "highest water pressure");
   }
 }
