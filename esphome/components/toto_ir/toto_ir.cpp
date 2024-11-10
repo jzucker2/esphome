@@ -59,5 +59,10 @@ void TotoIR::transmit_(RawTimings ir_code) {
   transmit.perform();
 }
 
+void TotoIR::set_operating_mode(const std::string &state) {
+  // If unsupported firmware ignore mode select
+  ESP_LOGD(TAG, "Set operating mode!!!!");
+}
+
 }  // namespace toto_ir
 }  // namespace esphome
