@@ -80,8 +80,8 @@ void TotoIR::set_water_pressure(const std::string &state) {
     ESP_LOGD(TAG, "2nd lowest water pressure");
   } else if (current_water_pressure == WATER_OPTION_3) {
     ESP_LOGD(TAG, "middle water pressure");
-    this->transmit_(TOTO_IR_FIRST_INCREASE_WATER_OPTION_TIMINGS);
-    this->transmit_(TOTO_IR_SECOND_INCREASE_WATER_OPTION_TIMINGS);
+    this->transmit_(TOTO_IR_FIRST_INCREASE_WATER_PRESSURE_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_INCREASE_WATER_PRESSURE_TIMINGS);
   } else if (current_water_pressure == WATER_OPTION_4) {
     ESP_LOGD(TAG, "higher water pressure");
   } else if (current_water_pressure == WATER_OPTION_5) {
