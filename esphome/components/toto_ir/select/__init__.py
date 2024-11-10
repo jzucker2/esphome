@@ -29,10 +29,14 @@ CONFIG_SCHEMA = {
 
 async def to_code(config):
     TotoIR_component = await cg.get_variable(config[CONF_TOTO_ID])
-    if operating_mode_config := config.get(CONF_WATER_PRESSURE):
-        sel = await select.new_select(
-            operating_mode_config,
-            options=[CONF_SELECTS],
-        )
-        await cg.register_parented(sel, config[CONF_TOTO_ID])
-        cg.add(TotoIR_component.set_water_pressure_select(sel))
+    select_types = {
+        CONF_WATER_PRESSURE: TotoIR_component.set_water_pressure_select,
+    }
+    for select_type, select_func in select_types.items():
+        if select_config := config.get(select_type):
+            sel = await select.new_select(
+                select_config,
+                options=[CONF_SELECTS],
+            )
+            await cg.register_parented(sel, config[CONF_TOTO_ID])
+            cg.add(select_func(sel))
