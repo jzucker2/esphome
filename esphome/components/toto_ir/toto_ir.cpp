@@ -34,9 +34,9 @@ void TotoIR::send_power_toggle() {
   //      559,  -553,  536,   -576, 560,  -552,  536,  -602, 551,   -561,  560,   -552,  560,   -552, 586,   -1664, 536,
   //      -576, 536,   -1714, 561,  -552, 559,   -553, 535,  -603,  536,   -1688, 535,   -1715, 560,  -1664, 560, -553,
   //      561,  -1689, 535,   -577, 559,  -553,  586,  -552, 559,   -1665, 535,   -1715, 560};
-  this->transmit_(esphome::toto_ir::TotoIR::first_power_code);
-  this->transmit_(esphome::toto_ir::TotoIR::second_power_code);
-  this->transmit_(esphome::toto_ir::TotoIR::third_power_code);
+  this->transmit_(TotoIRCodes::first_power_code);
+  this->transmit_(TotoIRCodes::second_power_code);
+  this->transmit_(TotoIRCodes::third_power_code);
 }
 void TotoIR::send_rear_wash() {
   ESP_LOGI(TAG, "Sending rear wash request");
