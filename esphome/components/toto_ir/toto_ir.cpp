@@ -11,6 +11,8 @@ void TotoIR::setup() {
   ESP_LOGCONFIG(TAG, "Setting up TotoIR ...");
   this->set_water_pressure(DEFAULT_WATER_OPTION_STRING);
   this->water_pressure_selector_->publish_state(DEFAULT_WATER_OPTION_STRING);
+  this->set_water_position(DEFAULT_WATER_OPTION_STRING);
+  this->water_position_selector_->publish_state(DEFAULT_WATER_OPTION_STRING);
 }
 
 void TotoIR::loop() {}
@@ -20,6 +22,7 @@ void TotoIR::dump_config() {
 #ifdef USE_SELECT
   ESP_LOGCONFIG(TAG, "Toto IR Select:");
   LOG_SELECT(TAG, "Water Pressure", this->water_pressure_selector_);
+  LOG_SELECT(TAG, "Water Position", this->water_position_selector_);
 #endif
 }
 
@@ -70,7 +73,6 @@ void TotoIR::transmit_(RawTimings ir_code) {
 }
 
 void TotoIR::set_water_pressure(const std::string &state) {
-  // If unsupported firmware ignore mode select
   ESP_LOGD(TAG, "Set water pressure!!!!");
   this->current_water_pressure = WATER_OPTION_TO_UINT.at(state);
   this->water_pressure_selector_->publish_state(state);
@@ -86,6 +88,25 @@ void TotoIR::set_water_pressure(const std::string &state) {
     ESP_LOGD(TAG, "higher water pressure");
   } else if (current_water_pressure == WATER_OPTION_5) {
     ESP_LOGD(TAG, "highest water pressure");
+  }
+}
+
+void TotoIR::set_water_position(const std::string &state) {
+  ESP_LOGD(TAG, "Set water position!!!!");
+  this->current_water_position = WATER_OPTION_TO_UINT.at(state);
+  this->water_position_selector_->publish_state(state);
+  if (current_water_position == WATER_OPTION_1) {
+    ESP_LOGD(TAG, "lowest water position");
+  } else if (current_water_position == WATER_OPTION_2) {
+    ESP_LOGD(TAG, "2nd lowest water position");
+  } else if (current_water_position == WATER_OPTION_3) {
+    ESP_LOGD(TAG, "middle water position");
+    this->transmit_(TOTO_IR_FIRST_INCREASE_WATER_POSITION_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_INCREASE_WATER_POSITION_TIMINGS);
+  } else if (current_water_position == WATER_OPTION_4) {
+    ESP_LOGD(TAG, "higher water position");
+  } else if (current_water_position == WATER_OPTION_5) {
+    ESP_LOGD(TAG, "highest water position");
   }
 }
 

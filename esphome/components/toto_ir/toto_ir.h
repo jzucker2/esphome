@@ -36,17 +36,22 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   void transmit_(RawTimings ir_code);
 #ifdef USE_SELECT
   void set_water_pressure_select(select::Select *selector) { this->water_pressure_selector_ = selector; };
+  void set_water_position_select(select::Select *selector) { this->water_position_selector_ = selector; };
 #endif
-  // functions
+  // direct actions
   void send_power_toggle();
   void send_rear_wash();
   void send_feminine_wash();
   void send_start_fans();
   void send_stop();
+  // level sets
   void set_water_pressure(const std::string &state);
   uint8_t current_water_pressure{WATER_OPTION_3};
+  void set_water_position(const std::string &state);
+  uint8_t current_water_position{WATER_OPTION_3};
 #ifdef USE_SELECT
   select::Select *water_pressure_selector_{nullptr};
+  select::Select *water_position_selector_{nullptr};
 #endif
 };
 
