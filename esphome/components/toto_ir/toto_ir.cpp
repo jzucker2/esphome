@@ -66,13 +66,8 @@ void TotoIR::transmit_(RawTimings ir_code) {
 void TotoIR::set_operating_mode(const std::string &state) {
   // If unsupported firmware ignore mode select
   ESP_LOGD(TAG, "Set operating mode!!!!");
-  if (current_operating_mode == OP_CALIBRATE_MODE) {
-    ESP_LOGD(TAG, "We are not yet handling calibrate mode");
-  } else {
-    ESP_LOGD(TAG, "Assume simple mode");
-    this->current_operating_mode = OP_SIMPLE_MODE;
-    this->operating_selector_->publish_state(OP_SIMPLE_MODE_STRING);
-  }
+  this->current_operating_mode = OP_MODE_TO_UINT.at(state);
+  this->operating_selector_->publish_state(state);
 }
 
 }  // namespace toto_ir
