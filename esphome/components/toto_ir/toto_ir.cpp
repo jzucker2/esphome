@@ -15,7 +15,13 @@ void TotoIR::setup() {
 
 void TotoIR::loop() {}
 
-void TotoIR::dump_config() { ESP_LOGCONFIG(TAG, "Toto IR"); }
+void TotoIR::dump_config() {
+  ESP_LOGCONFIG(TAG, "Toto IR");
+#ifdef USE_SELECT
+  ESP_LOGCONFIG(TAG, "Toto IR Select:");
+  LOG_SELECT(TAG, "  Operating Mode", this->operating_selector_);
+#endif
+}
 
 void TotoIR::send_power_toggle() {
   ESP_LOGI(TAG, "Sending power toggle request");
