@@ -7,7 +7,11 @@ namespace toto_ir {
 
 static const char *TAG = "toto_ir";
 
-void TotoIR::setup() {}
+void TotoIR::setup() {
+  ESP_LOGCONFIG(TAG, "Setting up TotoIR ...");
+  this->set_operating_mode(OP_SIMPLE_MODE_STRING);
+  this->operating_selector_->publish_state(OP_SIMPLE_MODE_STRING);
+}
 
 void TotoIR::loop() {}
 

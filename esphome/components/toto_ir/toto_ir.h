@@ -15,6 +15,9 @@ namespace toto_ir {
 using remote_base::RemoteTransmitterBase;
 using remote_base::RawTimings;
 
+static const std::string OP_NORMAL_MODE_STRING = "Normal";
+static const std::string OP_SIMPLE_MODE_STRING = "Simple";
+
 enum OpModeStruct : uint8_t { OP_NORMAL_MODE = 1, OP_CALIBRATE_MODE = 2, OP_SIMPLE_MODE = 3 };
 static const std::map<std::string, uint8_t> OP_MODE_TO_UINT{
     {"Normal", OP_NORMAL_MODE}, {"Calibrate", OP_CALIBRATE_MODE}, {"Simple", OP_SIMPLE_MODE}};
@@ -36,6 +39,7 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   void send_start_fans();
   void send_stop();
   void set_operating_mode(const std::string &state);
+  uint8_t current_operating_mode{OP_NORMAL_MODE};
 #ifdef USE_SELECT
   select::Select *operating_selector_{nullptr};
 #endif
