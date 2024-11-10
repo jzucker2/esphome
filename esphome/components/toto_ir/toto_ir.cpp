@@ -140,11 +140,12 @@ void TotoIR::send_stop() {
   //  this->transmit_(sixth_stop_code);
 }
 
-void TotoIR::transmit_(TotoIRCodes &ir_code) {
+void TotoIR::transmit_(TotoIRCodes ir_code) {
   ESP_LOGD(TAG, "Sending ir_code");
   auto transmit = this->transmitter_->transmit();
   ESP_LOGD(TAG, "Sending ir_code got transmitter");
   auto data = transmit.get_data();
+
   data->set_data(ir_code);
   data->set_carrier_frequency(38000);
   transmit.set_send_times(3);
