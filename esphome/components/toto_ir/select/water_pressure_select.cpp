@@ -5,11 +5,11 @@
 namespace esphome {
 namespace toto_ir {
 
-static const char *const TAG = "toto_ir.select";
+static const char *const TAG = "toto_ir.water_pressure_select";
 
-void TotoIRSelect::control(const std::string &value) {
+void TotoIRWaterPressureSelect::control(const std::string &value) {
   this->publish_state(value);
-  this->parent_->set_operating_mode(value);
+  this->parent_->set_water_pressure(value);
 }
 
 }  // namespace toto_ir

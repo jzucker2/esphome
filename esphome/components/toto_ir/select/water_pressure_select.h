@@ -6,9 +6,9 @@
 namespace esphome {
 namespace toto_ir {
 
-class TotoIRSelect : public Component, public select::Select, public Parented<TotoIR> {
+class TotoIRWaterPressureSelect : public Component, public select::Select, public Parented<TotoIR> {
  public:
-  TotoIRSelect() = default;
+  TotoIRWaterPressureSelect() = default;
 
  protected:
   void control(const std::string &value) override;
