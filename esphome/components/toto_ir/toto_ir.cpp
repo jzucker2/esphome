@@ -68,6 +68,15 @@ void TotoIR::set_operating_mode(const std::string &state) {
   ESP_LOGD(TAG, "Set operating mode!!!!");
   this->current_operating_mode = OP_MODE_TO_UINT.at(state);
   this->operating_selector_->publish_state(state);
+  if (current_operating_mode == OP_NORMAL_MODE) {
+    ESP_LOGD(TAG, "normal operating mode");
+  } else if (current_operating_mode == OP_CALIBRATE_MODE) {
+    ESP_LOGD(TAG, "calibrate operating mode");
+    this->transmit_(TOTO_IR_FIRST_INCREASE_WATER_PRESSURE_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_INCREASE_WATER_PRESSURE_TIMINGS);
+  } else if (current_operating_mode == OP_SIMPLE_MODE) {
+    ESP_LOGD(TAG, "simple operating mode");
+  }
 }
 
 }  // namespace toto_ir
