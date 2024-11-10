@@ -73,40 +73,46 @@ void TotoIR::transmit_(RawTimings ir_code) {
 }
 
 void TotoIR::set_water_pressure(const std::string &state) {
-  ESP_LOGD(TAG, "Set water pressure!!!!");
+  ESP_LOGD(TAG, "Set water pressure: %s", state.c_str());
   this->current_water_pressure = WATER_OPTION_TO_UINT.at(state);
   this->water_pressure_selector_->publish_state(state);
   if (current_water_pressure == WATER_OPTION_1) {
-    ESP_LOGD(TAG, "lowest water pressure");
+    this->transmit_(TOTO_IR_SECOND_WATER_PRESSURE_LEVEL_1_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_PRESSURE_LEVEL_1_TIMINGS);
   } else if (current_water_pressure == WATER_OPTION_2) {
-    ESP_LOGD(TAG, "2nd lowest water pressure");
+    this->transmit_(TOTO_IR_SECOND_WATER_PRESSURE_LEVEL_2_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_PRESSURE_LEVEL_2_TIMINGS);
   } else if (current_water_pressure == WATER_OPTION_3) {
-    ESP_LOGD(TAG, "middle water pressure");
-    this->transmit_(TOTO_IR_FIRST_INCREASE_WATER_PRESSURE_TIMINGS);
-    this->transmit_(TOTO_IR_SECOND_INCREASE_WATER_PRESSURE_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_PRESSURE_LEVEL_3_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_PRESSURE_LEVEL_3_TIMINGS);
   } else if (current_water_pressure == WATER_OPTION_4) {
-    ESP_LOGD(TAG, "higher water pressure");
+    this->transmit_(TOTO_IR_SECOND_WATER_PRESSURE_LEVEL_4_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_PRESSURE_LEVEL_4_TIMINGS);
   } else if (current_water_pressure == WATER_OPTION_5) {
-    ESP_LOGD(TAG, "highest water pressure");
+    this->transmit_(TOTO_IR_SECOND_WATER_PRESSURE_LEVEL_5_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_PRESSURE_LEVEL_5_TIMINGS);
   }
 }
 
 void TotoIR::set_water_position(const std::string &state) {
-  ESP_LOGD(TAG, "Set water position!!!!");
+  ESP_LOGD(TAG, "Set water position: %s", state.c_str());
   this->current_water_position = WATER_OPTION_TO_UINT.at(state);
   this->water_position_selector_->publish_state(state);
   if (current_water_position == WATER_OPTION_1) {
-    ESP_LOGD(TAG, "lowest water position");
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_1_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_1_TIMINGS);
   } else if (current_water_position == WATER_OPTION_2) {
-    ESP_LOGD(TAG, "2nd lowest water position");
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_2_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_2_TIMINGS);
   } else if (current_water_position == WATER_OPTION_3) {
-    ESP_LOGD(TAG, "middle water position");
-    this->transmit_(TOTO_IR_FIRST_INCREASE_WATER_POSITION_TIMINGS);
-    this->transmit_(TOTO_IR_SECOND_INCREASE_WATER_POSITION_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_3_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_3_TIMINGS);
   } else if (current_water_position == WATER_OPTION_4) {
-    ESP_LOGD(TAG, "higher water position");
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_4_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_4_TIMINGS);
   } else if (current_water_position == WATER_OPTION_5) {
-    ESP_LOGD(TAG, "highest water position");
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_5_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_5_TIMINGS);
   }
 }
 
