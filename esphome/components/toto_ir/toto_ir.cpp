@@ -140,7 +140,7 @@ void TotoIR::send_stop() {
   //  this->transmit_(sixth_stop_code);
 }
 
-void TotoIR::transmit_(remote_base::TotoIRCodes::RawTimings ir_code) {
+void TotoIR::transmit_(remote_base::TotoIRCodes::RawTimings &ir_code) {
   ESP_LOGD(TAG, "Sending ir_code");
   auto transmit = this->transmitter_->transmit();
   ESP_LOGD(TAG, "Sending ir_code got transmitter");
