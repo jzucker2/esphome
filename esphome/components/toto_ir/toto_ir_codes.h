@@ -4,6 +4,7 @@
 #include "esphome/components/remote_base/remote_base.h"
 
 namespace esphome {
+namespace toto_ir {
 
 using remote_base::RemoteTransmitterBase;
 using remote_base::RawTimings;
@@ -28,4 +29,5 @@ esphome::remote_base::RawTimings third_power_code = {
     -576, 536,   -1714, 561,  -552, 559,   -553, 535,  -603,  536,   -1688, 535,   -1715, 560,  -1664, 560,   -553,
     561,  -1689, 535,   -577, 559,  -553,  586,  -552, 559,   -1665, 535,   -1715, 560};
 
+}  // namespace toto_ir
 }  // namespace esphome
