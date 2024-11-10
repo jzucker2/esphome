@@ -20,30 +20,34 @@ CONF_STOP = "stop"
 CONF_POWER = "power"
 
 # Additional icons
-ICON_SPRAY_BOTTLE = "mdi:spray-bottle"
+ICON_POWER_TOGGLE = "mdi:power-cycle"
+ICON_REAR_WASH = "mdi:emoticon-poop"
+ICON_FEMININE_WASH = "mdi:human-female"
+ICON_STOP = "mdi:stop"
+ICON_FAN = "mdi:heat-wave"
 
 CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(CONF_TOTO_ID): cv.use_id(TotoIR),
         cv.Optional(CONF_REAR_WASH): button.button_schema(
             RearWashButton,
-            icon=ICON_SPRAY_BOTTLE,
+            icon=ICON_REAR_WASH,
         ),
         cv.Optional(CONF_FEMININE_WASH): button.button_schema(
             FeminineWashButton,
-            icon=ICON_SPRAY_BOTTLE,
+            icon=ICON_FEMININE_WASH,
         ),
         cv.Optional(CONF_FAN): button.button_schema(
             FanButton,
-            icon=ICON_SPRAY_BOTTLE,
+            icon=ICON_FAN,
         ),
         cv.Optional(CONF_STOP): button.button_schema(
             StopButton,
-            icon=ICON_SPRAY_BOTTLE,
+            icon=ICON_STOP,
         ),
         cv.Optional(CONF_POWER): button.button_schema(
             PowerButton,
-            icon=ICON_SPRAY_BOTTLE,
+            icon=ICON_POWER_TOGGLE,
         ),
     }
 )
