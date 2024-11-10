@@ -16,7 +16,7 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   void loop() override;
   void dump_config() override;
   // general functions
-  void transmit_(RawTimings &ir_code);
+  void transmit_(RawTimings ir_code);
   // functions
   void send_power_toggle();
   void send_rear_wash();
