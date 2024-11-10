@@ -6,7 +6,6 @@
 namespace esphome {
 namespace toto_ir {
 
-using remote_base::RemoteTransmitterBase;
 using remote_base::RawTimings;
 
 esphome::remote_base::RawTimings first_power_code = {
