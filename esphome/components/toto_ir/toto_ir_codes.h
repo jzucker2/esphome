@@ -10,26 +10,26 @@ namespace remote_base {
 
 class TotoIRCodes {
  public:
-  static const esphome::remote_base::RawTimings FIRST_POWER_CODE;
-  static const esphome::remote_base::RawTimings SECOND_POWER_CODE;
-  static const esphome::remote_base::RawTimings THIRD_POWER_CODE;
+  static const RawTimings FIRST_POWER_CODE;
+  static const RawTimings SECOND_POWER_CODE;
+  static const RawTimings THIRD_POWER_CODE;
 };
 
-const esphome::remote_base::RawTimings TotoIRCodes::FIRST_POWER_CODE = {
+const RawTimings TotoIRCodes::FIRST_POWER_CODE = {
     6020, -3037, 537,   -575, 537,  -1713, 537,  -575, 537,   -575,  537,   -575,  564,   -575, 537,   -575,  537,
     -575, 536,   -602,  537,  -575, 537,   -575, 537,  -1713, 537,   -576,  536,   -576,  560,  -552,  560,   -578,
     536,  -576,  561,   -551, 536,  -576,  587,  -552, 560,   -552,  560,   -552,  535,   -576, 587,   -1664, 536,
     -576, 536,   -1714, 560,  -552, 536,   -576, 560,  -579,  560,   -1663, 560,   -1691, 536,  -1688, 536,   -576,
     562,  -1688, 560,   -553, 535,  -577,  586,  -552, 535,   -1688, 536,   -1715, 560};
 
-const esphome::remote_base::RawTimings TotoIRCodes::SECOND_POWER_CODE = {
+const RawTimings TotoIRCodes::SECOND_POWER_CODE = {
     5991, -3037, 560,   -552, 537,  -1713, 537,  -576, 536,   -576,  536,   -576,  586,   -552, 537,   -575,  537,
     -575, 537,   -575,  587,  -552, 560,   -552, 536,  -1714, 561,   -551,  536,   -576,  536,  -576,  560,   -578,
     536,  -576,  560,   -552, 536,  -576,  536,  -603, 560,   -552,  559,   -552,  537,   -576, 562,   -1687, 537,
     -576, 560,   -1690, 536,  -576, 536,   -576, 536,  -603,  535,   -1688, 536,   -1715, 559,  -1665, 560,   -552,
     562,  -1688, 560,   -553, 535,  -577,  585,  -553, 559,   -1665, 559,   -1691, 560};
 
-const esphome::remote_base::RawTimings TotoIRCodes::THIRD_POWER_CODE = {
+const RawTimings TotoIRCodes::THIRD_POWER_CODE = {
     5992, -3036, 538,   -575, 536,  -1714, 561,  -551, 537,   -575,  560,   -552,  563,   -575, 561,   -551,  537,
     -575, 537,   -576,  562,  -576, 536,   -576, 536,  -1714, 537,   -575,  537,   -575,  536,  -576,  536,   -603,
     559,  -553,  536,   -576, 560,  -552,  536,  -602, 551,   -561,  560,   -552,  560,   -552, 586,   -1664, 536,
