@@ -28,11 +28,11 @@ CONFIG_SCHEMA = {
 
 
 async def to_code(config):
-    LD2420_component = await cg.get_variable(config[CONF_TOTO_ID])
+    TotoIR_component = await cg.get_variable(config[CONF_TOTO_ID])
     if operating_mode_config := config.get(CONF_WATER_PRESSURE):
         sel = await select.new_select(
             operating_mode_config,
             options=[CONF_SELECTS],
         )
         await cg.register_parented(sel, config[CONF_TOTO_ID])
-        cg.add(LD2420_component.set_operating_mode_select(sel))
+        cg.add(TotoIR_component.set_water_pressure_select(sel))
