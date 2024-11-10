@@ -1,6 +1,6 @@
 #include "esphome/core/log.h"
 #include "toto_ir.h"
-#include "toto_ir_constants.h"
+#include "toto_ir_codes.h"
 
 namespace esphome {
 namespace toto_ir {
