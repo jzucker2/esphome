@@ -10,6 +10,10 @@ FeminineWashButton = toto_ir_ns.class_("FeminineWashButton", button.Button)
 FanButton = toto_ir_ns.class_("FanButton", button.Button)
 StopButton = toto_ir_ns.class_("StopButton", button.Button)
 PowerButton = toto_ir_ns.class_("PowerButton", button.Button)
+OscillatingCleansingButton = toto_ir_ns.class_(
+    "OscillatingCleansingButton", button.Button
+)
+PulsatingCleansingButton = toto_ir_ns.class_("PulsatingCleansingButton", button.Button)
 
 
 # Toto IR buttons
@@ -18,6 +22,8 @@ CONF_FEMININE_WASH = "feminine_wash"
 CONF_FAN = "fan"
 CONF_STOP = "stop"
 CONF_POWER = "power"
+CONF_OSCILLATING_CLEANSING = "oscillating_cleansing"
+CONF_PULSATING_CLEANSING = "oscillating_cleansing"
 
 # Additional icons
 ICON_POWER_TOGGLE = "mdi:power-cycle"
@@ -25,6 +31,8 @@ ICON_REAR_WASH = "mdi:emoticon-poop"
 ICON_FEMININE_WASH = "mdi:human-female"
 ICON_STOP = "mdi:stop"
 ICON_FAN = "mdi:heat-wave"
+ICON_OSCILLATING_CLEANSING = "mdi:wave-undercurrent"
+ICON_PULSATING_CLEANSING = "mdi:wave-undercurrent"
 
 CONFIG_SCHEMA = cv.Schema(
     {
@@ -49,6 +57,14 @@ CONFIG_SCHEMA = cv.Schema(
             PowerButton,
             icon=ICON_POWER_TOGGLE,
         ),
+        cv.Optional(CONF_PULSATING_CLEANSING): button.button_schema(
+            PulsatingCleansingButton,
+            icon=ICON_PULSATING_CLEANSING,
+        ),
+        cv.Optional(CONF_OSCILLATING_CLEANSING): button.button_schema(
+            OscillatingCleansingButton,
+            icon=ICON_OSCILLATING_CLEANSING,
+        ),
     }
 )
 
@@ -60,6 +76,8 @@ async def to_code(config):
         CONF_FAN,
         CONF_STOP,
         CONF_POWER,
+        CONF_OSCILLATING_CLEANSING,
+        CONF_PULSATING_CLEANSING,
     ]:
         if conf := config.get(button_type):
             btn = await button.new_button(conf)
