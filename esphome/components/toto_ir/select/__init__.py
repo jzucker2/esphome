@@ -1,7 +1,6 @@
 import esphome.codegen as cg
 from esphome.components import select
 import esphome.config_validation as cv
-from esphome.const import ENTITY_CATEGORY_CONFIG
 
 from .. import CONF_TOTO_ID, TotoIR, toto_ir_ns
 
@@ -52,27 +51,22 @@ CONFIG_SCHEMA = {
     cv.GenerateID(CONF_TOTO_ID): cv.use_id(TotoIR),
     cv.Required(CONF_WATER_PRESSURE): select.select_schema(
         TotoIRWaterPressureSelect,
-        entity_category=ENTITY_CATEGORY_CONFIG,
         icon=CONF_WATER_PRESSURE_ICON,
     ),
     cv.Required(CONF_WATER_POSITION): select.select_schema(
         TotoIRWaterPositionSelect,
-        entity_category=ENTITY_CATEGORY_CONFIG,
         icon=CONF_WATER_POSITION_ICON,
     ),
     cv.Required(CONF_WATER_TEMPERATURE): select.select_schema(
         TotoIRWaterTemperatureSelect,
-        entity_category=ENTITY_CATEGORY_CONFIG,
         icon=CONF_WATER_TEMPERATURE_ICON,
     ),
     cv.Required(CONF_FAN_TEMPERATURE): select.select_schema(
         TotoIRFanTemperatureSelect,
-        entity_category=ENTITY_CATEGORY_CONFIG,
         icon=CONF_FAN_TEMPERATURE_ICON,
     ),
     cv.Required(CONF_SEAT_TEMPERATURE): select.select_schema(
         TotoIRSeatTemperatureSelect,
-        entity_category=ENTITY_CATEGORY_CONFIG,
         icon=CONF_SEAT_TEMPERATURE_ICON,
     ),
 }
