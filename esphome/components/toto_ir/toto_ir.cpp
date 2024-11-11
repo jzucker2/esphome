@@ -69,13 +69,17 @@ void TotoIR::send_stop() {
 }
 void TotoIR::send_oscillating_cleansing() {
   ESP_LOGI(TAG, "Sending oscillating cleansing request");
-  this->transmit_(TOTO_IR_FIRST_FAN_TIMINGS);
-  this->transmit_(TOTO_IR_SECOND_FAN_TIMINGS);
+  this->transmit_(TOTO_IR_FIRST_OSCILLATING_CLEANSING_TIMINGS);
+  this->transmit_(TOTO_IR_SECOND_OSCILLATING_CLEANSING_TIMINGS);
+  this->transmit_(TOTO_IR_THIRD_OSCILLATING_CLEANSING_TIMINGS);
+  this->transmit_(TOTO_IR_FOURTH_OSCILLATING_CLEANSING_TIMINGS);
+  this->transmit_(TOTO_IR_FIFTH_OSCILLATING_CLEANSING_TIMINGS);
+  this->transmit_(TOTO_IR_SIXTH_OSCILLATING_CLEANSING_TIMINGS);
 }
 void TotoIR::send_pulsating_cleansing() {
   ESP_LOGI(TAG, "Sending pulsating cleansing request");
-  this->transmit_(TOTO_IR_FIRST_FAN_TIMINGS);
-  this->transmit_(TOTO_IR_SECOND_FAN_TIMINGS);
+  this->transmit_(TOTO_IR_FIRST_PULSATING_CLEANSING_TIMINGS);
+  this->transmit_(TOTO_IR_SECOND_PULSATING_CLEANSING_TIMINGS);
 }
 
 void TotoIR::transmit_(RawTimings ir_code) {
