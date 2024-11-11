@@ -3,6 +3,8 @@
 namespace esphome {
 namespace toto_ir {
 
+static const char *const TAG = "toto_ir.pulsating_cleansing_button";
+
 void PulsatingCleansingButton::press_action() { this->parent_->send_pulsating_cleansing(); }
 
 }  // namespace toto_ir

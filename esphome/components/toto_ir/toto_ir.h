@@ -69,7 +69,6 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   void send_stop();
   void send_oscillating_cleansing();
   void send_pulsating_cleansing();
-  void send_personal_setting();
   // level sets
   void set_water_pressure(const std::string &state);
   uint8_t current_water_pressure{WATER_OPTION_3};
