@@ -25,7 +25,13 @@ CONF_STOP = "stop"
 CONF_POWER = "power"
 CONF_OSCILLATING_CLEANSING = "oscillating_cleansing"
 CONF_PULSATING_CLEANSING = "pulsating_cleansing"
+# Personal Settings
 CONF_PERSONAL_SETTING = "personal_setting"
+CONF_WATER_PRESSURE_OPTION = "water_pressure_option"
+CONF_WATER_POSITION_OPTION = "water_position_option"
+CONF_WATER_TEMPERATURE_OPTION = "water_temperature_option"
+CONF_SEAT_TEMPERATURE_OPTION = "seat_temperature_option"
+CONF_FAN_TEMPERATURE_OPTION = "fan_temperature_option"
 
 # Additional icons
 ICON_POWER_TOGGLE = "mdi:power-cycle"
@@ -71,6 +77,14 @@ CONFIG_SCHEMA = cv.Schema(
         cv.Optional(CONF_PERSONAL_SETTING): button.button_schema(
             PersonalSettingButton,
             icon=ICON_PERSONAL_SETTING,
+        ).extend(
+            {
+                cv.Optional(CONF_WATER_PRESSURE_OPTION, default="3"): cv.string,
+                cv.Optional(CONF_WATER_POSITION_OPTION, default="3"): cv.string,
+                cv.Optional(CONF_FAN_TEMPERATURE_OPTION, default="2"): cv.string,
+                cv.Optional(CONF_SEAT_TEMPERATURE_OPTION, default="2"): cv.string,
+                cv.Optional(CONF_WATER_TEMPERATURE_OPTION, default="2"): cv.string,
+            }
         ),
     }
 ).extend(cv.COMPONENT_SCHEMA)
