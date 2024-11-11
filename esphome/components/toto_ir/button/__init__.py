@@ -31,8 +31,8 @@ ICON_REAR_WASH = "mdi:emoticon-poop"
 ICON_FEMININE_WASH = "mdi:human-female"
 ICON_STOP = "mdi:stop"
 ICON_FAN = "mdi:heat-wave"
-ICON_OSCILLATING_CLEANSING = "mdi:wave-undercurrent"
-ICON_PULSATING_CLEANSING = "mdi:wave-undercurrent"
+ICON_OSCILLATING_CLEANSING = "mdi:wifi-arrow-left-right"
+ICON_PULSATING_CLEANSING = "mdi:wifi-minus"
 
 CONFIG_SCHEMA = cv.Schema(
     {
