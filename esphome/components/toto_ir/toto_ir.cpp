@@ -83,11 +83,11 @@ void TotoIR::send_pulsating_cleansing() {
 }
 void TotoIR::send_personal_setting() {
   ESP_LOGI(TAG, "Sending personal setting request");
-  this->set_water_pressure(WATER_OPTION_5);
-  this->set_water_position(WATER_OPTION_5);
-  this->set_water_temperature(WATER_SEAT_TEMP_OPTION_3);
-  this->set_seat_temperature(WATER_SEAT_TEMP_OPTION_3);
-  this->set_fan_temperature(FAN_TEMP_OPTION_3);
+  this->set_water_pressure(F("5"));
+  this->set_water_position(F("5"));
+  this->set_water_temperature(F("3"));
+  this->set_seat_temperature(F("3"));
+  this->set_fan_temperature(F("3"));
 }
 
 void TotoIR::transmit_(RawTimings ir_code) {
