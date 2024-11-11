@@ -73,7 +73,7 @@ CONFIG_SCHEMA = cv.Schema(
             icon=ICON_PERSONAL_SETTING,
         ),
     }
-)
+).extend(cv.COMPONENT_SCHEMA)
 
 
 async def to_code(config):

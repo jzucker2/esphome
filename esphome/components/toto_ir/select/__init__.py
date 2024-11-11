@@ -47,29 +47,31 @@ TotoIRSeatTemperatureSelect = toto_ir_ns.class_(
     "TotoIRSeatTemperatureSelect", cg.Component
 )
 
-CONFIG_SCHEMA = {
-    cv.GenerateID(CONF_TOTO_ID): cv.use_id(TotoIR),
-    cv.Required(CONF_WATER_PRESSURE): select.select_schema(
-        TotoIRWaterPressureSelect,
-        icon=CONF_WATER_PRESSURE_ICON,
-    ),
-    cv.Required(CONF_WATER_POSITION): select.select_schema(
-        TotoIRWaterPositionSelect,
-        icon=CONF_WATER_POSITION_ICON,
-    ),
-    cv.Required(CONF_WATER_TEMPERATURE): select.select_schema(
-        TotoIRWaterTemperatureSelect,
-        icon=CONF_WATER_TEMPERATURE_ICON,
-    ),
-    cv.Required(CONF_FAN_TEMPERATURE): select.select_schema(
-        TotoIRFanTemperatureSelect,
-        icon=CONF_FAN_TEMPERATURE_ICON,
-    ),
-    cv.Required(CONF_SEAT_TEMPERATURE): select.select_schema(
-        TotoIRSeatTemperatureSelect,
-        icon=CONF_SEAT_TEMPERATURE_ICON,
-    ),
-}
+CONFIG_SCHEMA = cv.Schema(
+    {
+        cv.GenerateID(CONF_TOTO_ID): cv.use_id(TotoIR),
+        cv.Required(CONF_WATER_PRESSURE): select.select_schema(
+            TotoIRWaterPressureSelect,
+            icon=CONF_WATER_PRESSURE_ICON,
+        ),
+        cv.Required(CONF_WATER_POSITION): select.select_schema(
+            TotoIRWaterPositionSelect,
+            icon=CONF_WATER_POSITION_ICON,
+        ),
+        cv.Required(CONF_WATER_TEMPERATURE): select.select_schema(
+            TotoIRWaterTemperatureSelect,
+            icon=CONF_WATER_TEMPERATURE_ICON,
+        ),
+        cv.Required(CONF_FAN_TEMPERATURE): select.select_schema(
+            TotoIRFanTemperatureSelect,
+            icon=CONF_FAN_TEMPERATURE_ICON,
+        ),
+        cv.Required(CONF_SEAT_TEMPERATURE): select.select_schema(
+            TotoIRSeatTemperatureSelect,
+            icon=CONF_SEAT_TEMPERATURE_ICON,
+        ),
+    }
+).extend(cv.COMPONENT_SCHEMA)
 
 
 async def to_code(config):
