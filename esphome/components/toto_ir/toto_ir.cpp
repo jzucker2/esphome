@@ -81,6 +81,11 @@ void TotoIR::send_pulsating_cleansing() {
   this->transmit_(TOTO_IR_FIRST_PULSATING_CLEANSING_TIMINGS);
   this->transmit_(TOTO_IR_SECOND_PULSATING_CLEANSING_TIMINGS);
 }
+void TotoIR::send_personal_setting() {
+  ESP_LOGI(TAG, "Sending personal setting request");
+  this->transmit_(TOTO_IR_FIRST_FAN_TIMINGS);
+  this->transmit_(TOTO_IR_SECOND_FAN_TIMINGS);
+}
 
 void TotoIR::transmit_(RawTimings ir_code) {
   ESP_LOGD(TAG, "Sending ir_code");

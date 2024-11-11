@@ -14,6 +14,7 @@ OscillatingCleansingButton = toto_ir_ns.class_(
     "OscillatingCleansingButton", button.Button
 )
 PulsatingCleansingButton = toto_ir_ns.class_("PulsatingCleansingButton", button.Button)
+PersonalSettingButton = toto_ir_ns.class_("PersonalSettingButton", button.Button)
 
 
 # Toto IR buttons
@@ -24,6 +25,7 @@ CONF_STOP = "stop"
 CONF_POWER = "power"
 CONF_OSCILLATING_CLEANSING = "oscillating_cleansing"
 CONF_PULSATING_CLEANSING = "pulsating_cleansing"
+CONF_PERSONAL_SETTING = "personal_setting"
 
 # Additional icons
 ICON_POWER_TOGGLE = "mdi:power-cycle"
@@ -33,6 +35,7 @@ ICON_STOP = "mdi:stop"
 ICON_FAN = "mdi:heat-wave"
 ICON_OSCILLATING_CLEANSING = "mdi:wifi-arrow-left-right"
 ICON_PULSATING_CLEANSING = "mdi:wifi-minus"
+ICON_PERSONAL_SETTING = "mdi:account-heart-outline"
 
 CONFIG_SCHEMA = cv.Schema(
     {
@@ -65,6 +68,10 @@ CONFIG_SCHEMA = cv.Schema(
             OscillatingCleansingButton,
             icon=ICON_OSCILLATING_CLEANSING,
         ),
+        cv.Optional(CONF_PERSONAL_SETTING): button.button_schema(
+            PersonalSettingButton,
+            icon=ICON_PERSONAL_SETTING,
+        ),
     }
 )
 
@@ -78,6 +85,7 @@ async def to_code(config):
         CONF_POWER,
         CONF_OSCILLATING_CLEANSING,
         CONF_PULSATING_CLEANSING,
+        CONF_PERSONAL_SETTING,
     ]:
         if conf := config.get(button_type):
             btn = await button.new_button(conf)
