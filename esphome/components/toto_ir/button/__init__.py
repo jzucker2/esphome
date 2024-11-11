@@ -23,7 +23,7 @@ CONF_FAN = "fan"
 CONF_STOP = "stop"
 CONF_POWER = "power"
 CONF_OSCILLATING_CLEANSING = "oscillating_cleansing"
-CONF_PULSATING_CLEANSING = "oscillating_cleansing"
+CONF_PULSATING_CLEANSING = "pulsating_cleansing"
 
 # Additional icons
 ICON_POWER_TOGGLE = "mdi:power-cycle"
