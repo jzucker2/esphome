@@ -104,8 +104,9 @@ async def to_code(config):
         if conf := config.get(button_type):
             btn = await button.new_button(conf)
             await cg.register_parented(btn, config[CONF_TOTO_ID])
-            # for key in [x for x in enc_conf if x in KEYPAD_KEYS]:
-            #     b_sensor = await cg.get_variable(enc_conf[key])
-            #     cg.add(listener.add_button(b_sensor, literal(f"LV_KEY_{key.upper()}")))
             if button_type == CONF_PERSONAL_SETTING:
                 cg.add(btn.set_water_pressure(conf[CONF_WATER_PRESSURE_OPTION]))
+                cg.add(btn.set_water_position(conf[CONF_WATER_POSITION_OPTION]))
+                cg.add(btn.set_water_temperature(conf[CONF_WATER_TEMPERATURE_OPTION]))
+                cg.add(btn.set_fan_temperature(conf[CONF_FAN_TEMPERATURE_OPTION]))
+                cg.add(btn.set_seat_temperature(conf[CONF_SEAT_TEMPERATURE_OPTION]))
