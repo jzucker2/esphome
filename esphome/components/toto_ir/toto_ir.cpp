@@ -13,6 +13,12 @@ void TotoIR::setup() {
   this->water_pressure_selector_->publish_state(DEFAULT_WATER_OPTION_STRING);
   this->set_water_position(DEFAULT_WATER_OPTION_STRING);
   this->water_position_selector_->publish_state(DEFAULT_WATER_OPTION_STRING);
+  this->set_water_temperature(DEFAULT_TEMPERATURE_OPTION_STRING);
+  this->water_temperature_selector_->publish_state(DEFAULT_TEMPERATURE_OPTION_STRING);
+  this->set_fan_temperature(DEFAULT_TEMPERATURE_OPTION_STRING);
+  this->fan_temperature_selector_->publish_state(DEFAULT_TEMPERATURE_OPTION_STRING);
+  this->set_seat_temperature(DEFAULT_TEMPERATURE_OPTION_STRING);
+  this->seat_temperature_selector_->publish_state(DEFAULT_TEMPERATURE_OPTION_STRING);
 }
 
 void TotoIR::loop() {}
@@ -23,6 +29,9 @@ void TotoIR::dump_config() {
   ESP_LOGCONFIG(TAG, "Toto IR Select:");
   LOG_SELECT(TAG, "Water Pressure", this->water_pressure_selector_);
   LOG_SELECT(TAG, "Water Position", this->water_position_selector_);
+  LOG_SELECT(TAG, "Water Temperature", this->water_temperature_selector_);
+  LOG_SELECT(TAG, "Fan Temperature", this->fan_temperature_selector_);
+  LOG_SELECT(TAG, "Seat Temperature", this->seat_temperature_selector_);
 #endif
 }
 
@@ -113,6 +122,60 @@ void TotoIR::set_water_position(const std::string &state) {
   } else if (current_water_position == WATER_OPTION_5) {
     this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_5_TIMINGS);
     this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_5_TIMINGS);
+  }
+}
+
+void TotoIR::set_water_temperature(const std::string &state) {
+  ESP_LOGD(TAG, "Set water temperature: %s", state.c_str());
+  this->current_water_temperature = WATER_SEAT_TEMP_OPTION_TO_UINT.at(state);
+  this->water_temperature_selector_->publish_state(state);
+  if (current_water_temperature == WATER_SEAT_TEMP_OPTION_OFF) {
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_1_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_1_TIMINGS);
+  } else if (current_water_temperature == WATER_SEAT_TEMP_OPTION_1) {
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_2_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_2_TIMINGS);
+  } else if (current_water_temperature == WATER_SEAT_TEMP_OPTION_2) {
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_3_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_3_TIMINGS);
+  } else if (current_water_temperature == WATER_SEAT_TEMP_OPTION_3) {
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_4_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_4_TIMINGS);
+  }
+}
+
+void TotoIR::set_seat_temperature(const std::string &state) {
+  ESP_LOGD(TAG, "Set seat temperature: %s", state.c_str());
+  this->current_seat_temperature = WATER_SEAT_TEMP_OPTION_TO_UINT.at(state);
+  this->seat_temperature_selector_->publish_state(state);
+  if (current_seat_temperature == WATER_SEAT_TEMP_OPTION_OFF) {
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_1_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_1_TIMINGS);
+  } else if (current_seat_temperature == WATER_SEAT_TEMP_OPTION_1) {
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_2_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_2_TIMINGS);
+  } else if (current_seat_temperature == WATER_SEAT_TEMP_OPTION_2) {
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_3_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_3_TIMINGS);
+  } else if (current_seat_temperature == WATER_SEAT_TEMP_OPTION_3) {
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_4_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_4_TIMINGS);
+  }
+}
+
+void TotoIR::set_fan_temperature(const std::string &state) {
+  ESP_LOGD(TAG, "Set fan temperature: %s", state.c_str());
+  this->current_fan_temperature = FAN_TEMP_OPTION_TO_UINT.at(state);
+  this->fan_temperature_selector_->publish_state(state);
+  if (current_fan_temperature == FAN_TEMP_OPTION_1) {
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_1_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_1_TIMINGS);
+  } else if (current_fan_temperature == FAN_TEMP_OPTION_2) {
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_3_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_3_TIMINGS);
+  } else if (current_fan_temperature == FAN_TEMP_OPTION_3) {
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_4_TIMINGS);
+    this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_4_TIMINGS);
   }
 }
 

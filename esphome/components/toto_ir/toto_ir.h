@@ -16,6 +16,7 @@ using remote_base::RemoteTransmitterBase;
 using remote_base::RawTimings;
 
 static const std::string DEFAULT_WATER_OPTION_STRING = "3";
+static const std::string DEFAULT_TEMPERATURE_OPTION_STRING = "2";
 
 enum WaterOptionsStruct : uint8_t {
   WATER_OPTION_1 = 1,
@@ -27,6 +28,25 @@ enum WaterOptionsStruct : uint8_t {
 static const std::map<std::string, uint8_t> WATER_OPTION_TO_UINT{
     {"1", WATER_OPTION_1}, {"2", WATER_OPTION_2}, {"3", WATER_OPTION_3}, {"4", WATER_OPTION_4}, {"5", WATER_OPTION_5}};
 
+enum WaterSeatTempOptionsStruct : uint8_t {
+  WATER_SEAT_TEMP_OPTION_OFF = 0,
+  WATER_SEAT_TEMP_OPTION_1 = 1,
+  WATER_SEAT_TEMP_OPTION_2 = 2,
+  WATER_SEAT_TEMP_OPTION_3 = 3,
+};
+static const std::map<std::string, uint8_t> WATER_SEAT_TEMP_OPTION_TO_UINT{{"Off", WATER_SEAT_TEMP_OPTION_OFF},
+                                                                           {"1", WATER_SEAT_TEMP_OPTION_1},
+                                                                           {"2", WATER_SEAT_TEMP_OPTION_2},
+                                                                           {"3", WATER_SEAT_TEMP_OPTION_3}};
+
+enum FanTempOptionsStruct : uint8_t {
+  FAN_TEMP_OPTION_1 = 1,
+  FAN_TEMP_OPTION_2 = 2,
+  FAN_TEMP_OPTION_3 = 3,
+};
+static const std::map<std::string, uint8_t> FAN_TEMP_OPTION_TO_UINT{
+    {"1", FAN_TEMP_OPTION_1}, {"2", FAN_TEMP_OPTION_2}, {"3", FAN_TEMP_OPTION_3}};
+
 class TotoIR : public Component, public remote_base::RemoteTransmittable {
  public:
   void setup() override;
@@ -37,6 +57,9 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
 #ifdef USE_SELECT
   void set_water_pressure_select(select::Select *selector) { this->water_pressure_selector_ = selector; };
   void set_water_position_select(select::Select *selector) { this->water_position_selector_ = selector; };
+  void set_water_temperature_select(select::Select *selector) { this->water_temperature_selector_ = selector; };
+  void set_fan_temperature_select(select::Select *selector) { this->fan_temperature_selector_ = selector; };
+  void set_seat_temperature_select(select::Select *selector) { this->seat_temperature_selector_ = selector; };
 #endif
   // direct actions
   void send_power_toggle();
@@ -49,9 +72,18 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   uint8_t current_water_pressure{WATER_OPTION_3};
   void set_water_position(const std::string &state);
   uint8_t current_water_position{WATER_OPTION_3};
+  void set_water_temperature(const std::string &state);
+  uint8_t current_water_temperature{WATER_SEAT_TEMP_OPTION_2};
+  void set_seat_temperature(const std::string &state);
+  uint8_t current_seat_temperature{WATER_SEAT_TEMP_OPTION_2};
+  void set_fan_temperature(const std::string &state);
+  uint8_t current_fan_temperature{FAN_TEMP_OPTION_2};
 #ifdef USE_SELECT
   select::Select *water_pressure_selector_{nullptr};
   select::Select *water_position_selector_{nullptr};
+  select::Select *water_temperature_selector_{nullptr};
+  select::Select *fan_temperature_selector_{nullptr};
+  select::Select *seat_temperature_selector_{nullptr};
 #endif
 };
 
