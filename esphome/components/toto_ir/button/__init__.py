@@ -104,3 +104,5 @@ async def to_code(config):
         if conf := config.get(button_type):
             btn = await button.new_button(conf)
             await cg.register_parented(btn, config[CONF_TOTO_ID])
+            if button_type == CONF_PERSONAL_SETTING:
+                cg.add(btn.set_water_pressure(config[CONF_WATER_PRESSURE_OPTION]))
