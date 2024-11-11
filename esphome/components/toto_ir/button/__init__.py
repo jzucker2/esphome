@@ -32,6 +32,8 @@ CONF_WATER_POSITION_OPTION = "water_position_option"
 CONF_WATER_TEMPERATURE_OPTION = "water_temperature_option"
 CONF_SEAT_TEMPERATURE_OPTION = "seat_temperature_option"
 CONF_FAN_TEMPERATURE_OPTION = "fan_temperature_option"
+CONF_DEFAULT_MAIN_OPTION = "3"
+CONF_DEFAULT_SECONDARY_OPTION = "1"
 
 # Additional icons
 ICON_POWER_TOGGLE = "mdi:power-cycle"
@@ -79,11 +81,21 @@ CONFIG_SCHEMA = cv.Schema(
             icon=ICON_PERSONAL_SETTING,
         ).extend(
             {
-                cv.Optional(CONF_WATER_PRESSURE_OPTION, default="3"): cv.string,
-                cv.Optional(CONF_WATER_POSITION_OPTION, default="3"): cv.string,
-                cv.Optional(CONF_FAN_TEMPERATURE_OPTION, default="2"): cv.string,
-                cv.Optional(CONF_SEAT_TEMPERATURE_OPTION, default="2"): cv.string,
-                cv.Optional(CONF_WATER_TEMPERATURE_OPTION, default="2"): cv.string,
+                cv.Optional(
+                    CONF_WATER_PRESSURE_OPTION, default=CONF_DEFAULT_MAIN_OPTION
+                ): cv.string,
+                cv.Optional(
+                    CONF_WATER_POSITION_OPTION, default=CONF_DEFAULT_MAIN_OPTION
+                ): cv.string,
+                cv.Optional(
+                    CONF_FAN_TEMPERATURE_OPTION, default=CONF_DEFAULT_SECONDARY_OPTION
+                ): cv.string,
+                cv.Optional(
+                    CONF_SEAT_TEMPERATURE_OPTION, default=CONF_DEFAULT_SECONDARY_OPTION
+                ): cv.string,
+                cv.Optional(
+                    CONF_WATER_TEMPERATURE_OPTION, default=CONF_DEFAULT_SECONDARY_OPTION
+                ): cv.string,
             }
         ),
     }
