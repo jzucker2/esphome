@@ -18,3 +18,28 @@ button:
       name: Toto IR Power Toggle
     stop:
       name: Toto IR Stop
+    oscillating_cleansing:
+      name: Toto IR Oscillating Cleansing
+    pulsating_cleansing:
+      name: Toto IR Pulsating Cleansing
+    personal_setting:
+      name: Toto IR Personal Setting
+      water_pressure_option: "2"
+      water_position_option: "2"
+      water_temperature_option: "1"
+      seat_temperature_option: "1"
+      fan_temperature_option: "1"
+
+select:
+  - platform: toto_ir
+    toto_id: toto_ir_remote
+    water_pressure:
+      name: Toto IR Water Pressure
+    water_position:
+      name: Toto IR Water Position
+    water_temperature:
+      name: Toto IR Water Temperature
+    seat_temperature:
+      name: Toto IR Seat Temperature
+    fan_temperature:
+      name: Toto IR Fan Temperature
