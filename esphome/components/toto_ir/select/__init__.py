@@ -13,9 +13,9 @@ CONF_FAN_TEMPERATURE = "fan_temperature"
 
 CONF_WATER_POSITION_ICON = "mdi:boom-gate-arrow-up"
 CONF_WATER_PRESSURE_ICON = "mdi:water-plus"
-CONF_WATER_TEMPERATURE_ICON = "mdi:water-plus"
-CONF_FAN_TEMPERATURE_ICON = "mdi:water-plus"
-CONF_SEAT_TEMPERATURE_ICON = "mdi:water-plus"
+CONF_WATER_TEMPERATURE_ICON = "mdi:water-thermometer"
+CONF_FAN_TEMPERATURE_ICON = "mdi:thermometer-lines"
+CONF_SEAT_TEMPERATURE_ICON = "mdi:car-seat-heater"
 
 CONF_WATER_SELECTS = [
     "1",
