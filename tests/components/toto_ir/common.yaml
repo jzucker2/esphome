@@ -22,6 +22,8 @@ button:
       name: Toto IR Oscillating Cleansing
     pulsating_cleansing:
       name: Toto IR Pulsating Cleansing
+    reset:
+      name: Toto IR Reset
     personal_setting:
       name: Toto IR Personal Setting
       water_pressure_option: "2"
