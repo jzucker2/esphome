@@ -204,7 +204,7 @@ void TotoIR::set_configuration(const std::string &water_pressure, const std::str
   this->set_fan_temperature(fan_temperature);
 }
 
-void reset_configuration() {
+void TotoIR::reset_configuration() {
   ESP_LOGD(TAG, "Reset configuration");
   this->set_configuration("3", "3", "2", "2", "2");
 }
