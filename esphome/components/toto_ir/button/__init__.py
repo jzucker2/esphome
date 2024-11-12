@@ -10,6 +10,7 @@ FeminineWashButton = toto_ir_ns.class_("FeminineWashButton", button.Button)
 FanButton = toto_ir_ns.class_("FanButton", button.Button)
 StopButton = toto_ir_ns.class_("StopButton", button.Button)
 PowerButton = toto_ir_ns.class_("PowerButton", button.Button)
+ResetButton = toto_ir_ns.class_("ResetButton", button.Button)
 OscillatingCleansingButton = toto_ir_ns.class_(
     "OscillatingCleansingButton", button.Button
 )
@@ -25,6 +26,7 @@ CONF_STOP = "stop"
 CONF_POWER = "power"
 CONF_OSCILLATING_CLEANSING = "oscillating_cleansing"
 CONF_PULSATING_CLEANSING = "pulsating_cleansing"
+CONF_RESET = "reset"
 # Personal Settings
 CONF_PERSONAL_SETTING = "personal_setting"
 CONF_WATER_PRESSURE_OPTION = "water_pressure_option"
@@ -44,6 +46,7 @@ ICON_FAN = "mdi:heat-wave"
 ICON_OSCILLATING_CLEANSING = "mdi:wifi-arrow-left-right"
 ICON_PULSATING_CLEANSING = "mdi:wifi-minus"
 ICON_PERSONAL_SETTING = "mdi:account-heart-outline"
+ICON_RESET = "mdi:wifi-minus"
 
 CONFIG_SCHEMA = cv.Schema(
     {
@@ -75,6 +78,10 @@ CONFIG_SCHEMA = cv.Schema(
         cv.Optional(CONF_OSCILLATING_CLEANSING): button.button_schema(
             OscillatingCleansingButton,
             icon=ICON_OSCILLATING_CLEANSING,
+        ),
+        cv.Optional(CONF_RESET): button.button_schema(
+            ResetButton,
+            icon=ICON_RESET,
         ),
         cv.Optional(CONF_PERSONAL_SETTING): button.button_schema(
             PersonalSettingButton,
@@ -111,6 +118,7 @@ async def to_code(config):
         CONF_POWER,
         CONF_OSCILLATING_CLEANSING,
         CONF_PULSATING_CLEANSING,
+        CONF_RESET,
         CONF_PERSONAL_SETTING,
     ]:
         if conf := config.get(button_type):
