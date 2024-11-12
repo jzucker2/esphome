@@ -197,11 +197,11 @@ void TotoIR::set_configuration(const std::string &water_pressure, const std::str
                                const std::string &water_temperature, const std::string &seat_temperature,
                                const std::string &fan_temperature) {
   ESP_LOGD(TAG, "Set configuration water_pressure: %s ...", water_pressure.c_str());
-  this->parent_->set_water_pressure(this->get_water_pressure());
-  this->parent_->set_water_position(this->get_water_position());
-  this->parent_->set_water_temperature(this->get_water_temperature());
-  this->parent_->set_seat_temperature(this->get_seat_temperature());
-  this->parent_->set_fan_temperature(this->get_fan_temperature());
+  this->parent_->set_water_pressure(water_pressure);
+  this->parent_->set_water_position(water_position);
+  this->parent_->set_water_temperature(water_temperature);
+  this->parent_->set_seat_temperature(seat_temperature);
+  this->parent_->set_fan_temperature(fan_temperature);
 }
 
 void reset_configuration() {
