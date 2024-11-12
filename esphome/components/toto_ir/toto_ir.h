@@ -80,6 +80,11 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   uint8_t current_seat_temperature{WATER_SEAT_TEMP_OPTION_2};
   void set_fan_temperature(const std::string &state);
   uint8_t current_fan_temperature{FAN_TEMP_OPTION_2};
+  // multi set
+  void set_configuration(const std::string &water_pressure, const std::string &water_position,
+                         const std::string &water_temperature, const std::string &seat_temperature,
+                         const std::string &fan_temperature);
+  void reset_configuration();
 #ifdef USE_SELECT
   select::Select *water_pressure_selector_{nullptr};
   select::Select *water_position_selector_{nullptr};
