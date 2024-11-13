@@ -46,7 +46,7 @@ ICON_FAN = "mdi:heat-wave"
 ICON_OSCILLATING_CLEANSING = "mdi:wifi-arrow-left-right"
 ICON_PULSATING_CLEANSING = "mdi:wifi-minus"
 ICON_PERSONAL_SETTING = "mdi:account-heart-outline"
-ICON_RESET = "mdi:wifi-minus"
+ICON_RESET = "mdi:reload"
 
 CONFIG_SCHEMA = cv.Schema(
     {
