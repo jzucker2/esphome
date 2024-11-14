@@ -1,6 +1,7 @@
 #include "esphome/core/log.h"
 #include "toto_ir.h"
 #include "toto_ir_codes.h"
+#include "esphome/core/application.h"
 
 namespace esphome {
 namespace toto_ir {
@@ -223,7 +224,10 @@ void TotoIR::reset_configuration(bool reset_timer) {
   this->set_configuration(TOTO_RESET_CONFIG);
 }
 
-void TotoIR::set_reset_timer() { ESP_LOGD(TAG, "Reset timer triggered"); }
+void TotoIR::set_reset_timer() {
+  ESP_LOGD(TAG, "Reset timer triggered");
+  App.scheduler.set_timeout(this, TOTO_IR_RESET_TIMER, 60, this->reset_configuration(false));
+}
 
 }  // namespace toto_ir
 }  // namespace esphome
