@@ -221,12 +221,12 @@ void TotoIR::set_configuration(const TotoConfig &config, bool reset_timer) {
 
 void TotoIR::reset_configuration(bool reset_timer) {
   ESP_LOGD(TAG, "Reset configuration");
-  this->set_configuration(TOTO_RESET_CONFIG);
+  this->set_configuration(TOTO_RESET_CONFIG, reset_timer);
 }
 
 void TotoIR::set_reset_timer() {
   ESP_LOGD(TAG, "Reset timer triggered");
-  App.scheduler.set_timeout(this, TOTO_IR_RESET_TIMER, 60, this->reset_configuration(false));
+  this->set_timeout(TOTO_IR_RESET_TIMER, 2000, [this]() { this->reset_configuration(false); });
 }
 
 }  // namespace toto_ir
