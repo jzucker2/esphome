@@ -17,7 +17,7 @@ void PersonalSettingButton::setup() {
 
 void PersonalSettingButton::press_action() {
   ESP_LOGD(TAG, "Sending personal setting request configuration");
-  this->parent_->set_configuration(this->personal_config_);
+  //  this->parent_->set_configuration(this->personal_config_);
 }
 
 }  // namespace toto_ir
