@@ -262,7 +262,9 @@ void TotoIR::set_reset_timer_() {
     this->cancel_timeout(TOTO_IR_RESET_TIMER);
   }
   this->has_reset_timer_ = true;
-  this->set_timeout(TOTO_IR_RESET_TIMER, 5 * 60 * 1000, [this]() {
+  int duration = this->reset_timer_duration_seconds_ * 1000;
+  ESP_LOGD(TAG, "Going to set a timer for (ms) duration: %d", duration);
+  this->set_timeout(TOTO_IR_RESET_TIMER, duration, [this]() {
     ESP_LOGD(TAG, "Reset timer expired!");
     this->reset_configuration(false);
     this->has_reset_timer_ = false;
