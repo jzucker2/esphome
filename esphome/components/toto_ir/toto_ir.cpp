@@ -251,7 +251,7 @@ void TotoIR::reset_configuration(bool reset_timer) {
 }
 
 void TotoIR::set_reset_timer_() {
-  ESP_LOGD(TAG, "Reset timer triggered");
+  ESP_LOGD(TAG, "Reset timer requested");
   if (!this->reset_timer_enabled_) {
     ESP_LOGD(TAG, "Reset timer not enabled, skipping ...");
     return;
