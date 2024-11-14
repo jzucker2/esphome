@@ -64,6 +64,7 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   void dump_config() override;
   // general functions
   void transmit_(RawTimings ir_code);
+  void set_should_use_reset_timer(bool reset_timer_enabled) { this->reset_timer_enabled_ = reset_timer_enabled; }
 #ifdef USE_SELECT
   void set_water_pressure_select(select::Select *selector) { this->water_pressure_selector_ = selector; };
   void set_water_position_select(select::Select *selector) { this->water_position_selector_ = selector; };
@@ -93,9 +94,6 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   // multi set
   void set_configuration(const TotoConfig &config, bool reset_timer = false);
   void reset_configuration(bool reset_timer = false);
-  // timer reset
-  void set_reset_timer();
-  bool has_reset_timer_ = false;
 #ifdef USE_SELECT
   select::Select *water_pressure_selector_{nullptr};
   select::Select *water_position_selector_{nullptr};
@@ -103,6 +101,11 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   select::Select *fan_temperature_selector_{nullptr};
   select::Select *seat_temperature_selector_{nullptr};
 #endif
+ protected:
+  // reset timer
+  void set_reset_timer_();
+  bool has_reset_timer_ = false;
+  bool reset_timer_enabled_ = false;
 };
 
 }  // namespace toto_ir

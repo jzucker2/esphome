@@ -28,6 +28,7 @@ void TotoIR::loop() {}
 
 void TotoIR::dump_config() {
   ESP_LOGCONFIG(TAG, "Toto IR");
+  ESP_LOGCONFIG(TAG, "Toto IR reset_timer_enabled: %d", this->reset_timer_enabled_);
 #ifdef USE_SELECT
   ESP_LOGCONFIG(TAG, "Toto IR Select:");
   LOG_SELECT(TAG, "Water Pressure", this->water_pressure_selector_);
@@ -44,7 +45,7 @@ void TotoIR::send_power_toggle(bool reset_timer) {
   this->transmit_(TOTO_IR_SECOND_POWER_TIMINGS);
   this->transmit_(TOTO_IR_THIRD_POWER_TIMINGS);
   if (reset_timer) {
-    this->set_reset_timer();
+    this->set_reset_timer_();
   }
 }
 void TotoIR::send_rear_wash(bool reset_timer) {
@@ -52,7 +53,7 @@ void TotoIR::send_rear_wash(bool reset_timer) {
   this->transmit_(TOTO_IR_FIRST_REAR_WASH_TIMINGS);
   this->transmit_(TOTO_IR_SECOND_REAR_WASH_TIMINGS);
   if (reset_timer) {
-    this->set_reset_timer();
+    this->set_reset_timer_();
   }
 }
 void TotoIR::send_feminine_wash(bool reset_timer) {
@@ -61,7 +62,7 @@ void TotoIR::send_feminine_wash(bool reset_timer) {
   this->transmit_(TOTO_IR_FIRST_FEM_WASH_TIMINGS);
   this->transmit_(TOTO_IR_SECOND_FEM_WASH_TIMINGS);
   if (reset_timer) {
-    this->set_reset_timer();
+    this->set_reset_timer_();
   }
 }
 void TotoIR::send_start_fans(bool reset_timer) {
@@ -69,7 +70,7 @@ void TotoIR::send_start_fans(bool reset_timer) {
   this->transmit_(TOTO_IR_FIRST_FAN_TIMINGS);
   this->transmit_(TOTO_IR_SECOND_FAN_TIMINGS);
   if (reset_timer) {
-    this->set_reset_timer();
+    this->set_reset_timer_();
   }
 }
 void TotoIR::send_stop(bool reset_timer) {
@@ -82,7 +83,7 @@ void TotoIR::send_stop(bool reset_timer) {
   this->transmit_(TOTO_IR_FIFTH_STOP_TIMINGS);
   this->transmit_(TOTO_IR_SIXTH_STOP_TIMINGS);
   if (reset_timer) {
-    this->set_reset_timer();
+    this->set_reset_timer_();
   }
 }
 void TotoIR::send_oscillating_cleansing(bool reset_timer) {
@@ -94,7 +95,7 @@ void TotoIR::send_oscillating_cleansing(bool reset_timer) {
   this->transmit_(TOTO_IR_FIFTH_OSCILLATING_CLEANSING_TIMINGS);
   this->transmit_(TOTO_IR_SIXTH_OSCILLATING_CLEANSING_TIMINGS);
   if (reset_timer) {
-    this->set_reset_timer();
+    this->set_reset_timer_();
   }
 }
 void TotoIR::send_pulsating_cleansing(bool reset_timer) {
@@ -102,7 +103,7 @@ void TotoIR::send_pulsating_cleansing(bool reset_timer) {
   this->transmit_(TOTO_IR_FIRST_PULSATING_CLEANSING_TIMINGS);
   this->transmit_(TOTO_IR_SECOND_PULSATING_CLEANSING_TIMINGS);
   if (reset_timer) {
-    this->set_reset_timer();
+    this->set_reset_timer_();
   }
 }
 
@@ -140,7 +141,7 @@ void TotoIR::set_water_pressure(const std::string &state, bool reset_timer) {
     this->transmit_(TOTO_IR_SECOND_WATER_PRESSURE_LEVEL_5_TIMINGS);
   }
   if (reset_timer) {
-    this->set_reset_timer();
+    this->set_reset_timer_();
   }
 }
 
@@ -165,7 +166,7 @@ void TotoIR::set_water_position(const std::string &state, bool reset_timer) {
     this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_5_TIMINGS);
   }
   if (reset_timer) {
-    this->set_reset_timer();
+    this->set_reset_timer_();
   }
 }
 
@@ -187,7 +188,7 @@ void TotoIR::set_water_temperature(const std::string &state, bool reset_timer) {
     this->transmit_(TOTO_IR_SECOND_WATER_TEMPERATURE_LEVEL_3_TIMINGS);
   }
   if (reset_timer) {
-    this->set_reset_timer();
+    this->set_reset_timer_();
   }
 }
 
@@ -209,7 +210,7 @@ void TotoIR::set_seat_temperature(const std::string &state, bool reset_timer) {
     this->transmit_(TOTO_IR_SECOND_SEAT_TEMPERATURE_LEVEL_3_TIMINGS);
   }
   if (reset_timer) {
-    this->set_reset_timer();
+    this->set_reset_timer_();
   }
 }
 
@@ -228,7 +229,7 @@ void TotoIR::set_fan_temperature(const std::string &state, bool reset_timer) {
     this->transmit_(TOTO_IR_SECOND_FAN_TEMPERATURE_LEVEL_3_TIMINGS);
   }
   if (reset_timer) {
-    this->set_reset_timer();
+    this->set_reset_timer_();
   }
 }
 
@@ -240,7 +241,7 @@ void TotoIR::set_configuration(const TotoConfig &config, bool reset_timer) {
   this->set_seat_temperature(config.seat_temperature, false);
   this->set_fan_temperature(config.fan_temperature, false);
   if (reset_timer) {
-    this->set_reset_timer();
+    this->set_reset_timer_();
   }
 }
 
@@ -249,8 +250,12 @@ void TotoIR::reset_configuration(bool reset_timer) {
   this->set_configuration(TOTO_RESET_CONFIG, reset_timer);
 }
 
-void TotoIR::set_reset_timer() {
+void TotoIR::set_reset_timer_() {
   ESP_LOGD(TAG, "Reset timer triggered");
+  if (!this->reset_timer_enabled_) {
+    ESP_LOGD(TAG, "Reset timer not enabled, skipping ...");
+    return;
+  }
   if (this->has_reset_timer_) {
     ESP_LOGD(TAG, "Already has a reset timer so cancelling and setting a new one");
     this->has_reset_timer_ = false;
