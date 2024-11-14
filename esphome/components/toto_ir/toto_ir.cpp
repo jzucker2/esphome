@@ -35,29 +35,29 @@ void TotoIR::dump_config() {
 #endif
 }
 
-void TotoIR::send_power_toggle() {
+void TotoIR::send_power_toggle(bool set_timer = false) {
   ESP_LOGI(TAG, "Sending power toggle request");
   this->transmit_(TOTO_IR_FIRST_POWER_TIMINGS);
   this->transmit_(TOTO_IR_SECOND_POWER_TIMINGS);
   this->transmit_(TOTO_IR_THIRD_POWER_TIMINGS);
 }
-void TotoIR::send_rear_wash() {
+void TotoIR::send_rear_wash(bool set_timer = false) {
   ESP_LOGI(TAG, "Sending rear wash request");
   this->transmit_(TOTO_IR_FIRST_REAR_WASH_TIMINGS);
   this->transmit_(TOTO_IR_SECOND_REAR_WASH_TIMINGS);
 }
-void TotoIR::send_feminine_wash() {
+void TotoIR::send_feminine_wash(bool set_timer = false) {
   ESP_LOGI(TAG, "Sending feminine wash request");
 
   this->transmit_(TOTO_IR_FIRST_FEM_WASH_TIMINGS);
   this->transmit_(TOTO_IR_SECOND_FEM_WASH_TIMINGS);
 }
-void TotoIR::send_start_fans() {
+void TotoIR::send_start_fans(bool set_timer = false) {
   ESP_LOGI(TAG, "Sending start fans request");
   this->transmit_(TOTO_IR_FIRST_FAN_TIMINGS);
   this->transmit_(TOTO_IR_SECOND_FAN_TIMINGS);
 }
-void TotoIR::send_stop() {
+void TotoIR::send_stop(bool set_timer = false) {
   ESP_LOGI(TAG, "Sending stop request");
 
   this->transmit_(TOTO_IR_FIRST_STOP_TIMINGS);
@@ -67,7 +67,7 @@ void TotoIR::send_stop() {
   this->transmit_(TOTO_IR_FIFTH_STOP_TIMINGS);
   this->transmit_(TOTO_IR_SIXTH_STOP_TIMINGS);
 }
-void TotoIR::send_oscillating_cleansing() {
+void TotoIR::send_oscillating_cleansing(bool set_timer = false) {
   ESP_LOGI(TAG, "Sending oscillating cleansing request");
   this->transmit_(TOTO_IR_FIRST_OSCILLATING_CLEANSING_TIMINGS);
   this->transmit_(TOTO_IR_SECOND_OSCILLATING_CLEANSING_TIMINGS);
@@ -76,7 +76,7 @@ void TotoIR::send_oscillating_cleansing() {
   this->transmit_(TOTO_IR_FIFTH_OSCILLATING_CLEANSING_TIMINGS);
   this->transmit_(TOTO_IR_SIXTH_OSCILLATING_CLEANSING_TIMINGS);
 }
-void TotoIR::send_pulsating_cleansing() {
+void TotoIR::send_pulsating_cleansing(bool set_timer = false) {
   ESP_LOGI(TAG, "Sending pulsating cleansing request");
   this->transmit_(TOTO_IR_FIRST_PULSATING_CLEANSING_TIMINGS);
   this->transmit_(TOTO_IR_SECOND_PULSATING_CLEANSING_TIMINGS);
@@ -95,7 +95,7 @@ void TotoIR::transmit_(RawTimings ir_code) {
   transmit.perform();
 }
 
-void TotoIR::set_water_pressure(const std::string &state) {
+void TotoIR::set_water_pressure(const std::string &state, bool set_timer = false) {
   ESP_LOGD(TAG, "Set water pressure: %s", state.c_str());
   this->current_water_pressure = WATER_OPTION_TO_UINT.at(state);
   this->water_pressure_selector_->publish_state(state);
@@ -117,7 +117,7 @@ void TotoIR::set_water_pressure(const std::string &state) {
   }
 }
 
-void TotoIR::set_water_position(const std::string &state) {
+void TotoIR::set_water_position(const std::string &state, bool set_timer = false) {
   ESP_LOGD(TAG, "Set water position: %s", state.c_str());
   this->current_water_position = WATER_OPTION_TO_UINT.at(state);
   this->water_position_selector_->publish_state(state);
@@ -139,7 +139,7 @@ void TotoIR::set_water_position(const std::string &state) {
   }
 }
 
-void TotoIR::set_water_temperature(const std::string &state) {
+void TotoIR::set_water_temperature(const std::string &state, bool set_timer = false) {
   ESP_LOGD(TAG, "Set water temperature: %s", state.c_str());
   this->current_water_temperature = WATER_SEAT_TEMP_OPTION_TO_UINT.at(state);
   this->water_temperature_selector_->publish_state(state);
@@ -158,7 +158,7 @@ void TotoIR::set_water_temperature(const std::string &state) {
   }
 }
 
-void TotoIR::set_seat_temperature(const std::string &state) {
+void TotoIR::set_seat_temperature(const std::string &state, bool set_timer = false) {
   ESP_LOGD(TAG, "Set seat temperature: %s", state.c_str());
   this->current_seat_temperature = WATER_SEAT_TEMP_OPTION_TO_UINT.at(state);
   this->seat_temperature_selector_->publish_state(state);
@@ -177,7 +177,7 @@ void TotoIR::set_seat_temperature(const std::string &state) {
   }
 }
 
-void TotoIR::set_fan_temperature(const std::string &state) {
+void TotoIR::set_fan_temperature(const std::string &state, bool set_timer = false) {
   ESP_LOGD(TAG, "Set fan temperature: %s", state.c_str());
   this->current_fan_temperature = FAN_TEMP_OPTION_TO_UINT.at(state);
   this->fan_temperature_selector_->publish_state(state);
@@ -193,7 +193,7 @@ void TotoIR::set_fan_temperature(const std::string &state) {
   }
 }
 
-void TotoIR::set_configuration(const TotoConfig &config) {
+void TotoIR::set_configuration(const TotoConfig &config, bool set_timer = false) {
   ESP_LOGD(TAG, "Set configuration water_pressure: %s ...", config.water_pressure.c_str());
   this->set_water_pressure(config.water_pressure);
   this->set_water_position(config.water_position);
@@ -202,7 +202,7 @@ void TotoIR::set_configuration(const TotoConfig &config) {
   this->set_fan_temperature(config.fan_temperature);
 }
 
-void TotoIR::reset_configuration() {
+void TotoIR::reset_configuration(bool set_timer = false) {
   ESP_LOGD(TAG, "Reset configuration");
   this->set_configuration(TOTO_RESET_CONFIG);
 }
