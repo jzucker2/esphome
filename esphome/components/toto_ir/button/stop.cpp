@@ -5,7 +5,7 @@ namespace toto_ir {
 
 static const char *const TAG = "toto_ir.stop_button";
 
-void StopButton::press_action() { this->parent_->send_stop(); }
+void StopButton::press_action() { this->parent_->send_stop(true); }
 
 }  // namespace toto_ir
 }  // namespace esphome

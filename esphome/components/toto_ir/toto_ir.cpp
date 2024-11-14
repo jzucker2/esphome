@@ -43,22 +43,34 @@ void TotoIR::send_power_toggle(bool reset_timer) {
   this->transmit_(TOTO_IR_FIRST_POWER_TIMINGS);
   this->transmit_(TOTO_IR_SECOND_POWER_TIMINGS);
   this->transmit_(TOTO_IR_THIRD_POWER_TIMINGS);
+  if (reset_timer) {
+    this->set_reset_timer();
+  }
 }
 void TotoIR::send_rear_wash(bool reset_timer) {
   ESP_LOGI(TAG, "Sending rear wash request");
   this->transmit_(TOTO_IR_FIRST_REAR_WASH_TIMINGS);
   this->transmit_(TOTO_IR_SECOND_REAR_WASH_TIMINGS);
+  if (reset_timer) {
+    this->set_reset_timer();
+  }
 }
 void TotoIR::send_feminine_wash(bool reset_timer) {
   ESP_LOGI(TAG, "Sending feminine wash request");
 
   this->transmit_(TOTO_IR_FIRST_FEM_WASH_TIMINGS);
   this->transmit_(TOTO_IR_SECOND_FEM_WASH_TIMINGS);
+  if (reset_timer) {
+    this->set_reset_timer();
+  }
 }
 void TotoIR::send_start_fans(bool reset_timer) {
   ESP_LOGI(TAG, "Sending start fans request");
   this->transmit_(TOTO_IR_FIRST_FAN_TIMINGS);
   this->transmit_(TOTO_IR_SECOND_FAN_TIMINGS);
+  if (reset_timer) {
+    this->set_reset_timer();
+  }
 }
 void TotoIR::send_stop(bool reset_timer) {
   ESP_LOGI(TAG, "Sending stop request");
@@ -69,6 +81,9 @@ void TotoIR::send_stop(bool reset_timer) {
   this->transmit_(TOTO_IR_FOURTH_STOP_TIMINGS);
   this->transmit_(TOTO_IR_FIFTH_STOP_TIMINGS);
   this->transmit_(TOTO_IR_SIXTH_STOP_TIMINGS);
+  if (reset_timer) {
+    this->set_reset_timer();
+  }
 }
 void TotoIR::send_oscillating_cleansing(bool reset_timer) {
   ESP_LOGI(TAG, "Sending oscillating cleansing request");
@@ -78,11 +93,17 @@ void TotoIR::send_oscillating_cleansing(bool reset_timer) {
   this->transmit_(TOTO_IR_FOURTH_OSCILLATING_CLEANSING_TIMINGS);
   this->transmit_(TOTO_IR_FIFTH_OSCILLATING_CLEANSING_TIMINGS);
   this->transmit_(TOTO_IR_SIXTH_OSCILLATING_CLEANSING_TIMINGS);
+  if (reset_timer) {
+    this->set_reset_timer();
+  }
 }
 void TotoIR::send_pulsating_cleansing(bool reset_timer) {
   ESP_LOGI(TAG, "Sending pulsating cleansing request");
   this->transmit_(TOTO_IR_FIRST_PULSATING_CLEANSING_TIMINGS);
   this->transmit_(TOTO_IR_SECOND_PULSATING_CLEANSING_TIMINGS);
+  if (reset_timer) {
+    this->set_reset_timer();
+  }
 }
 
 void TotoIR::transmit_(RawTimings ir_code) {
