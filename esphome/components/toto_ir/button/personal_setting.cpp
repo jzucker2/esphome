@@ -16,9 +16,9 @@ void PersonalSettingButton::setup() {
 void PersonalSettingButton::press_action() {
   ESP_LOGD(TAG, "Sending personal setting request configuration");
   const struct TotoConfig config = {
-      this->personal_config_->water_pressure,    this->personal_config_->water_position,
-      this->personal_config_->water_temperature, this->personal_config_->seat_temperature,
-      this->personal_config_->fan_temperature,
+      this->personal_config_.water_pressure,    this->personal_config_.water_position,
+      this->personal_config_.water_temperature, this->personal_config_.seat_temperature,
+      this->personal_config_.fan_temperature,
   };
   this->parent_->set_configuration(config);
 }
