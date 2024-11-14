@@ -72,27 +72,27 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   void set_seat_temperature_select(select::Select *selector) { this->seat_temperature_selector_ = selector; };
 #endif
   // direct actions
-  void send_power_toggle(bool set_timer = false);
-  void send_rear_wash(bool set_timer = false);
-  void send_feminine_wash(bool set_timer = false);
-  void send_start_fans(bool set_timer = false);
-  void send_stop(bool set_timer = false);
-  void send_oscillating_cleansing(bool set_timer = false);
-  void send_pulsating_cleansing(bool set_timer = false);
+  void send_power_toggle(bool reset_timer = false);
+  void send_rear_wash(bool reset_timer = false);
+  void send_feminine_wash(bool reset_timer = false);
+  void send_start_fans(bool reset_timer = false);
+  void send_stop(bool reset_timer = false);
+  void send_oscillating_cleansing(bool reset_timer = false);
+  void send_pulsating_cleansing(bool reset_timer = false);
   // level sets
-  void set_water_pressure(const std::string &state, bool set_timer = false);
+  void set_water_pressure(const std::string &state, bool reset_timer = false);
   uint8_t current_water_pressure{WATER_OPTION_3};
-  void set_water_position(const std::string &state, bool set_timer = false);
+  void set_water_position(const std::string &state, bool reset_timer = false);
   uint8_t current_water_position{WATER_OPTION_3};
-  void set_water_temperature(const std::string &state, bool set_timer = false);
+  void set_water_temperature(const std::string &state, bool reset_timer = false);
   uint8_t current_water_temperature{WATER_SEAT_TEMP_OPTION_2};
-  void set_seat_temperature(const std::string &state, bool set_timer = false);
+  void set_seat_temperature(const std::string &state, bool reset_timer = false);
   uint8_t current_seat_temperature{WATER_SEAT_TEMP_OPTION_2};
-  void set_fan_temperature(const std::string &state, bool set_timer = false);
+  void set_fan_temperature(const std::string &state, bool reset_timer = false);
   uint8_t current_fan_temperature{FAN_TEMP_OPTION_2};
   // multi set
-  void set_configuration(const TotoConfig &config, bool set_timer = false);
-  void reset_configuration(bool set_timer = false);
+  void set_configuration(const TotoConfig &config, bool reset_timer = false);
+  void reset_configuration(bool reset_timer = false);
   // timer reset
   void set_reset_timer();
 #ifdef USE_SELECT
