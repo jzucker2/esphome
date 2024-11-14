@@ -17,7 +17,7 @@ void PersonalSettingButton::setup() {
 
 void PersonalSettingButton::press_action() {
   ESP_LOGD(TAG, "Sending personal setting request configuration");
-  const TotoConfig &config = this->personal_config_;
+  const TotoConfig config = this->personal_config_;
   this->parent_->set_configuration(config);
 }
 
