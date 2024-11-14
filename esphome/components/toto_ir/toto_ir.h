@@ -55,7 +55,7 @@ struct TotoConfig {
   std::string fan_temperature;
 };
 
-// const struct TotoConfig TOTO_RESET_CONFIG = {"3", "3", "2", "2", "2"};
+const struct TotoConfig TOTO_RESET_CONFIG = {"3", "3", "2", "2", "2"};
 
 class TotoIR : public Component, public remote_base::RemoteTransmittable {
  public:
