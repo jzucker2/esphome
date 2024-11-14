@@ -47,6 +47,16 @@ enum FanTempOptionsStruct : uint8_t {
 static const std::map<std::string, uint8_t> FAN_TEMP_OPTION_TO_UINT{
     {"1", FAN_TEMP_OPTION_1}, {"2", FAN_TEMP_OPTION_2}, {"3", FAN_TEMP_OPTION_3}};
 
+struct TotoConfig {
+  std::string water_pressure;
+  std::string water_position;
+  std::string water_temperature;
+  std::string seat_temperature;
+  std::string fan_temperature;
+};
+
+const struct TotoConfig TOTO_RESET_CONFIG = {"3", "3", "2", "2", "2"};
+
 class TotoIR : public Component, public remote_base::RemoteTransmittable {
  public:
   void setup() override;
@@ -81,9 +91,7 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   void set_fan_temperature(const std::string &state);
   uint8_t current_fan_temperature{FAN_TEMP_OPTION_2};
   // multi set
-  void set_configuration(const std::string &water_pressure, const std::string &water_position,
-                         const std::string &water_temperature, const std::string &seat_temperature,
-                         const std::string &fan_temperature);
+  void set_configuration(TotoConfig config);
   void reset_configuration();
 #ifdef USE_SELECT
   select::Select *water_pressure_selector_{nullptr};
