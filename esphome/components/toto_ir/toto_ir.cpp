@@ -11,15 +11,16 @@ static const char *TOTO_IR_RESET_TIMER = "toto_ir_reset_timer";
 
 void TotoIR::setup() {
   ESP_LOGCONFIG(TAG, "Setting up TotoIR ...");
-  this->set_water_pressure(DEFAULT_WATER_OPTION_STRING);
+  reset_timer = false;
+  this->set_water_pressure(DEFAULT_WATER_OPTION_STRING, reset_timer);
   this->water_pressure_selector_->publish_state(DEFAULT_WATER_OPTION_STRING);
-  this->set_water_position(DEFAULT_WATER_OPTION_STRING);
+  this->set_water_position(DEFAULT_WATER_OPTION_STRING, reset_timer);
   this->water_position_selector_->publish_state(DEFAULT_WATER_OPTION_STRING);
-  this->set_water_temperature(DEFAULT_TEMPERATURE_OPTION_STRING);
+  this->set_water_temperature(DEFAULT_TEMPERATURE_OPTION_STRING, reset_timer);
   this->water_temperature_selector_->publish_state(DEFAULT_TEMPERATURE_OPTION_STRING);
-  this->set_fan_temperature(DEFAULT_TEMPERATURE_OPTION_STRING);
+  this->set_fan_temperature(DEFAULT_TEMPERATURE_OPTION_STRING, reset_timer);
   this->fan_temperature_selector_->publish_state(DEFAULT_TEMPERATURE_OPTION_STRING);
-  this->set_seat_temperature(DEFAULT_TEMPERATURE_OPTION_STRING);
+  this->set_seat_temperature(DEFAULT_TEMPERATURE_OPTION_STRING, reset_timer);
   this->seat_temperature_selector_->publish_state(DEFAULT_TEMPERATURE_OPTION_STRING);
 }
 
@@ -212,11 +213,11 @@ void TotoIR::set_fan_temperature(const std::string &state, bool reset_timer) {
 
 void TotoIR::set_configuration(const TotoConfig &config, bool reset_timer) {
   ESP_LOGD(TAG, "Set configuration water_pressure: %s ...", config.water_pressure.c_str());
-  this->set_water_pressure(config.water_pressure);
-  this->set_water_position(config.water_position);
-  this->set_water_temperature(config.water_temperature);
-  this->set_seat_temperature(config.seat_temperature);
-  this->set_fan_temperature(config.fan_temperature);
+  this->set_water_pressure(config.water_pressure, reset_timer);
+  this->set_water_position(config.water_position, reset_timer);
+  this->set_water_temperature(config.water_temperature, reset_timer);
+  this->set_seat_temperature(config.seat_temperature, reset_timer);
+  this->set_fan_temperature(config.fan_temperature, reset_timer);
 }
 
 void TotoIR::reset_configuration(bool reset_timer) {
