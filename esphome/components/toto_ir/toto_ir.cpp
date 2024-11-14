@@ -212,7 +212,7 @@ void TotoIR::set_fan_temperature(const std::string &state, bool reset_timer) {
 }
 
 void TotoIR::set_configuration(const TotoConfig &config, bool reset_timer) {
-  ESP_LOGD(TAG, "Set configuration water_pressure: %s ...", config.water_pressure.c_str());
+  ESP_LOGD(TAG, "Set configuration with reset_timer: %d", reset_timer);
   this->set_water_pressure(config.water_pressure, reset_timer);
   this->set_water_position(config.water_position, reset_timer);
   this->set_water_temperature(config.water_temperature, reset_timer);
@@ -221,7 +221,7 @@ void TotoIR::set_configuration(const TotoConfig &config, bool reset_timer) {
 }
 
 void TotoIR::reset_configuration(bool reset_timer) {
-  ESP_LOGD(TAG, "Reset configuration");
+  ESP_LOGD(TAG, "Reset configuration with reset_timer: %d", reset_timer);
   this->set_configuration(TOTO_RESET_CONFIG, reset_timer);
 }
 
