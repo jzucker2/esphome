@@ -193,7 +193,7 @@ void TotoIR::set_fan_temperature(const std::string &state) {
   }
 }
 
-void TotoIR::set_configuration(const toto_ir::TotoConfig &config) {
+void TotoIR::set_configuration(const TotoConfig &config) {
   //  ESP_LOGD(TAG, "Set configuration water_pressure: %s ...", config.water_pressure.c_str());
   //  this->set_water_pressure(config.water_pressure);
   //  this->set_water_position(config.water_position);
@@ -204,7 +204,7 @@ void TotoIR::set_configuration(const toto_ir::TotoConfig &config) {
 
 void TotoIR::reset_configuration() {
   ESP_LOGD(TAG, "Reset configuration");
-  this->set_configuration(TOTO_RESET_CONFIG);
+  //  this->set_configuration(TOTO_RESET_CONFIG);
 }
 
 }  // namespace toto_ir
