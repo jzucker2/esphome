@@ -9,7 +9,7 @@ static const char *const TAG = "toto_ir.water_temperature_select";
 
 void TotoIRWaterTemperatureSelect::control(const std::string &value) {
   this->publish_state(value);
-  this->parent_->set_water_temperature(value);
+  this->parent_->set_water_temperature(value, true);
 }
 
 }  // namespace toto_ir

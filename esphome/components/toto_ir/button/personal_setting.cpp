@@ -11,7 +11,7 @@ void PersonalSettingButton::press_action() {
       this->get_water_pressure(),   this->get_water_position(),  this->get_water_temperature(),
       this->get_seat_temperature(), this->get_fan_temperature(),
   };
-  this->parent_->set_configuration(personal_config);
+  this->parent_->set_configuration(personal_config, true);
 }
 
 }  // namespace toto_ir
