@@ -6,6 +6,7 @@ namespace esphome {
 namespace toto_ir {
 
 static const char *TAG = "toto_ir";
+static const char *TOTO_IR_RESET_TIMER = "toto_ir_reset_timer";
 
 void TotoIR::setup() {
   ESP_LOGCONFIG(TAG, "Setting up TotoIR ...");
@@ -206,6 +207,8 @@ void TotoIR::reset_configuration(bool set_timer) {
   ESP_LOGD(TAG, "Reset configuration");
   this->set_configuration(TOTO_RESET_CONFIG);
 }
+
+void TotoIR::set_reset_timer() { ESP_LOGD(TAG, "Reset timer triggered"); }
 
 }  // namespace toto_ir
 }  // namespace esphome

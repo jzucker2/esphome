@@ -93,6 +93,8 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   // multi set
   void set_configuration(const TotoConfig &config, bool set_timer = false);
   void reset_configuration(bool set_timer = false);
+  // timer reset
+  void set_reset_timer();
 #ifdef USE_SELECT
   select::Select *water_pressure_selector_{nullptr};
   select::Select *water_position_selector_{nullptr};
