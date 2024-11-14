@@ -116,6 +116,9 @@ void TotoIR::set_water_pressure(const std::string &state, bool reset_timer) {
     this->transmit_(TOTO_IR_SECOND_WATER_PRESSURE_LEVEL_5_TIMINGS);
     this->transmit_(TOTO_IR_SECOND_WATER_PRESSURE_LEVEL_5_TIMINGS);
   }
+  if (reset_timer) {
+    this->set_reset_timer();
+  }
 }
 
 void TotoIR::set_water_position(const std::string &state, bool reset_timer) {
@@ -138,6 +141,9 @@ void TotoIR::set_water_position(const std::string &state, bool reset_timer) {
     this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_5_TIMINGS);
     this->transmit_(TOTO_IR_SECOND_WATER_POSITION_LEVEL_5_TIMINGS);
   }
+  if (reset_timer) {
+    this->set_reset_timer();
+  }
 }
 
 void TotoIR::set_water_temperature(const std::string &state, bool reset_timer) {
@@ -157,6 +163,9 @@ void TotoIR::set_water_temperature(const std::string &state, bool reset_timer) {
     this->transmit_(TOTO_IR_SECOND_WATER_TEMPERATURE_LEVEL_3_TIMINGS);
     this->transmit_(TOTO_IR_SECOND_WATER_TEMPERATURE_LEVEL_3_TIMINGS);
   }
+  if (reset_timer) {
+    this->set_reset_timer();
+  }
 }
 
 void TotoIR::set_seat_temperature(const std::string &state, bool reset_timer) {
@@ -175,6 +184,9 @@ void TotoIR::set_seat_temperature(const std::string &state, bool reset_timer) {
   } else if (current_seat_temperature == WATER_SEAT_TEMP_OPTION_3) {
     this->transmit_(TOTO_IR_SECOND_SEAT_TEMPERATURE_LEVEL_3_TIMINGS);
     this->transmit_(TOTO_IR_SECOND_SEAT_TEMPERATURE_LEVEL_3_TIMINGS);
+  }
+  if (reset_timer) {
+    this->set_reset_timer();
   }
 }
 
