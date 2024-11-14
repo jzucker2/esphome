@@ -21,12 +21,14 @@ class PersonalSettingButton : public button::Button, public Parented<TotoIR> {
   std::string get_seat_temperature() const { return this->seat_temperature_; }
 
  protected:
+  void setup() override;
   void press_action() override;
   std::string water_pressure_{};
   std::string water_position_{};
   std::string water_temperature_{};
   std::string fan_temperature_{};
   std::string seat_temperature_{};
+  TotoConfig personal_config_;
 };
 
 }  // namespace toto_ir
