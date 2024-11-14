@@ -95,6 +95,7 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   void reset_configuration(bool reset_timer = false);
   // timer reset
   void set_reset_timer();
+  bool has_reset_timer_ = false;
 #ifdef USE_SELECT
   select::Select *water_pressure_selector_{nullptr};
   select::Select *water_position_selector_{nullptr};

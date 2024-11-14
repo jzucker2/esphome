@@ -230,7 +230,17 @@ void TotoIR::reset_configuration(bool reset_timer) {
 
 void TotoIR::set_reset_timer() {
   ESP_LOGD(TAG, "Reset timer triggered");
-  this->set_timeout(TOTO_IR_RESET_TIMER, 1 * 60 * 1000, [this]() { this->reset_configuration(false); });
+  if (this->has_reset_timer_) {
+    ESP_LOGD(TAG, "Already has a reset timer so cancelling and setting a new one");
+    this->has_reset_timer_ = false;
+    this->cancel_timeout(TOTO_IR_RESET_TIMER);
+  }
+  this->has_reset_timer_ = true;
+  this->set_timeout(TOTO_IR_RESET_TIMER, 1 * 60 * 1000, [this]() {
+    ESP_LOGD(TAG, "Reset timer expired!");
+    this->reset_configuration(false);
+    this->has_reset_timer_ = false;
+  });
 }
 
 }  // namespace toto_ir
