@@ -28,7 +28,7 @@ void TotoIR::loop() {}
 
 void TotoIR::dump_config() {
   ESP_LOGCONFIG(TAG, "Toto IR");
-  ESP_LOGCONFIG(TAG, "Toto IR reset_timer_enabled: %d", this->reset_timer_enabled_);
+  ESP_LOGCONFIG(TAG, "Toto IR reset_timer_enabled: %d", this->get_reset_timer_enabled_());
 #ifdef USE_SELECT
   ESP_LOGCONFIG(TAG, "Toto IR Select:");
   LOG_SELECT(TAG, "Water Pressure", this->water_pressure_selector_);
@@ -252,23 +252,31 @@ void TotoIR::reset_configuration(bool reset_timer) {
 
 void TotoIR::set_reset_timer_() {
   ESP_LOGD(TAG, "Reset timer requested");
-  if (!this->reset_timer_enabled_) {
+  if (!this->get_reset_timer_enabled_()) {
     ESP_LOGD(TAG, "Reset timer not enabled, skipping ...");
     return;
   }
-  if (this->has_reset_timer_) {
+  if (this->has_active_reset_timer_) {
     ESP_LOGD(TAG, "Already has a reset timer so cancelling and setting a new one");
-    this->has_reset_timer_ = false;
+    this->has_active_reset_timer_ = false;
     this->cancel_timeout(TOTO_IR_RESET_TIMER);
   }
-  this->has_reset_timer_ = true;
+  this->has_active_reset_timer_ = true;
   int duration = this->reset_timer_duration_seconds_ * 1000;
   ESP_LOGD(TAG, "Going to set a timer for (ms) duration: %d", duration);
   this->set_timeout(TOTO_IR_RESET_TIMER, duration, [this]() {
     ESP_LOGD(TAG, "Reset timer expired!");
     this->reset_configuration(false);
-    this->has_reset_timer_ = false;
+    this->has_active_reset_timer_ = false;
   });
+}
+
+bool TotoIR::get_reset_timer_enabled_() {
+  if (this->reset_timer_duration_seconds_ == 0) {
+    return false;
+  } else {
+    return true;
+  }
 }
 
 }  // namespace toto_ir

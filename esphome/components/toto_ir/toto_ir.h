@@ -64,7 +64,6 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   void dump_config() override;
   // general functions
   void transmit_(RawTimings ir_code);
-  void set_should_use_reset_timer(bool reset_timer_enabled) { this->reset_timer_enabled_ = reset_timer_enabled; }
   void set_reset_timer_duration_seconds(int reset_timer_duration_seconds) {
     this->reset_timer_duration_seconds_ = reset_timer_duration_seconds;
   }
@@ -107,9 +106,9 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
  protected:
   // reset timer
   void set_reset_timer_();
-  bool has_reset_timer_ = false;
-  bool reset_timer_enabled_ = false;
+  bool has_active_reset_timer_ = false;
   int reset_timer_duration_seconds_ = 0;
+  bool get_reset_timer_enabled_();
 };
 
 }  // namespace toto_ir
