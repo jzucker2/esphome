@@ -1,4 +1,4 @@
-//#include "esphome/core/log.h"
+#include "esphome/core/log.h"
 #include "reset_timer_active.h"
 
 namespace esphome {
@@ -10,7 +10,7 @@ static const char *const TAG = "toto_ir.reset_timer_active";
 //
 // }
 
-// void ResetTimerActive::dump_config() { ESP_LOGCONFIG(TAG, "Reset timer active config"); }
+void ResetTimerActive::dump_config() { ESP_LOGCONFIG(TAG, "Reset timer active config"); }
 
 }  // namespace toto_ir
 }  // namespace esphome
