@@ -9,7 +9,6 @@ namespace toto_ir {
 
 class ResetTimerActive : public binary_sensor::BinarySensor, public Component, public Parented<TotoIR> {
  public:
-  //  void setup() override;
   void dump_config() override;
 };
 
