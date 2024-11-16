@@ -283,7 +283,7 @@ bool TotoIR::set_has_active_reset_timer_(bool active_reset_timer, bool publish_s
   this->has_active_reset_timer_ = active_reset_timer;
 #ifdef USE_BINARY_SENSOR
   if (publish_state) {
-    this->reset_timer_active_binary_sensor_->publish(active_reset_timer);
+    this->reset_timer_active_binary_sensor_->publish_state(active_reset_timer);
   }
 #endif
   return active_reset_timer;
