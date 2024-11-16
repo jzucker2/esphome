@@ -258,16 +258,16 @@ void TotoIR::set_reset_timer_() {
   }
   if (this->has_active_reset_timer_) {
     ESP_LOGD(TAG, "Already has a reset timer so cancelling and setting a new one");
-    this->has_active_reset_timer_ = false;
+    this->set_has_active_reset_timer_(false, false);
     this->cancel_timeout(TOTO_IR_RESET_TIMER);
   }
-  this->has_active_reset_timer_ = true;
+  this->set_has_active_reset_timer_(true);
   int duration = this->reset_timer_duration_seconds_ * 1000;
   ESP_LOGD(TAG, "Going to set a timer for (ms) duration: %d", duration);
   this->set_timeout(TOTO_IR_RESET_TIMER, duration, [this]() {
     ESP_LOGD(TAG, "Reset timer expired!");
     this->reset_configuration(false);
-    this->has_active_reset_timer_ = false;
+    this->set_has_active_reset_timer_(false);
   });
 }
 
@@ -278,6 +278,15 @@ bool TotoIR::get_reset_timer_enabled_() {
     return true;
   }
 }
+
+bool set_has_active_reset_timer_(bool active_reset_timer, bool publish_state) {
+  this->has_active_reset_timer_ = active_reset_timer
+#ifdef USE_BINARY_SENSOR
+      if (publish_state) {
+    this->reset_timer_active_binary_sensor_->publish(active_reset_timer);
+  }
+#endif
+};
 
 }  // namespace toto_ir
 }  // namespace esphome

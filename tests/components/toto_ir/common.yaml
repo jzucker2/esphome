@@ -5,6 +5,12 @@ remote_transmitter:
 toto_ir:
   id: toto_ir_remote
 
+binary_sensor:
+  - platform: toto_ir
+    toto_id: toto_ir_remote
+    reset_timer_active:
+      name: Toto IR Reset Timer Active
+
 button:
   - platform: toto_ir
     toto_id: toto_ir_remote

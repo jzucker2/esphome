@@ -6,6 +6,9 @@
 #ifdef USE_SELECT
 #include "esphome/components/select/select.h"
 #endif
+#ifdef USE_BINARY_SENSOR
+#include "esphome/components/binary_sensor/binary_sensor.h"
+#endif
 #include <map>
 #include <functional>
 
@@ -74,6 +77,11 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   void set_fan_temperature_select(select::Select *selector) { this->fan_temperature_selector_ = selector; };
   void set_seat_temperature_select(select::Select *selector) { this->seat_temperature_selector_ = selector; };
 #endif
+#ifdef USE_BINARY_SENSOR
+  void set_reset_timer_active_binary_sensor(binary_sensor::BinarySensor *binary_sensor) {
+    this->reset_timer_active_binary_sensor_ = binary_sensor;
+  };
+#endif
   // direct actions
   void send_power_toggle(bool reset_timer = false);
   void send_rear_wash(bool reset_timer = false);
@@ -103,11 +111,15 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   select::Select *fan_temperature_selector_{nullptr};
   select::Select *seat_temperature_selector_{nullptr};
 #endif
+#ifdef USE_BINARY_SENSOR
+  binary_sensor::BinarySensor *reset_timer_active_binary_sensor_{nullptr};
+#endif
  protected:
   // reset timer
   void set_reset_timer_();
   bool has_active_reset_timer_ = false;
   int reset_timer_duration_seconds_ = 0;
+  bool set_has_active_reset_timer_(bool active_reset_timer, bool publish_state = true);
   bool get_reset_timer_enabled_();
 };
 
