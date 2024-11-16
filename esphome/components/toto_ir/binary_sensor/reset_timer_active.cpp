@@ -10,7 +10,7 @@ static const char *const TAG = "toto_ir.reset_timer_active";
 //
 // }
 
-void ResetTimerActive::dump_config() { ESP_LOGCONFIG(TAG, "Reset timer active config"); }
+void ResetTimerActive::dump_config() { LOG_BINARY_SENSOR("", "Status Binary Sensor", this); }
 
 }  // namespace toto_ir
 }  // namespace esphome
