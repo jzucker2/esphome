@@ -286,6 +286,7 @@ bool set_has_active_reset_timer_(bool active_reset_timer, bool publish_state) {
     this->reset_timer_active_binary_sensor_->publish(active_reset_timer);
   }
 #endif
+  return active_reset_timer;
 };
 
 }  // namespace toto_ir
