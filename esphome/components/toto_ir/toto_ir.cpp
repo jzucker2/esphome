@@ -11,7 +11,7 @@ static const char *TOTO_IR_RESET_TIMER = "toto_ir_reset_timer";
 
 void TotoIR::setup() {
   ESP_LOGCONFIG(TAG, "Setting up TotoIR ...");
-  bool reset_timer = false;
+  bool reset_timer = this->set_has_active_reset_timer_(false);
   this->set_water_pressure(DEFAULT_WATER_OPTION_STRING, reset_timer);
   this->water_pressure_selector_->publish_state(DEFAULT_WATER_OPTION_STRING);
   this->set_water_position(DEFAULT_WATER_OPTION_STRING, reset_timer);
