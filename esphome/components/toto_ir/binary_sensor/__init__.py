@@ -23,6 +23,8 @@ CONFIG_SCHEMA = cv.Schema(
 
 
 async def to_code(config):
-    var = await binary_sensor.new_binary_sensor(config)
-    await cg.register_parented(var, config[CONF_TOTO_ID])
-    cg.add(TotoIR.set_reset_timer_active_binary_sensor(var))
+    TotoIR_component = await cg.get_variable(config[CONF_TOTO_ID])
+    if bin_config := config.get(CONF_RESET_TIMER_ACTIVE):
+        var = await binary_sensor.new_binary_sensor(bin_config)
+        await cg.register_parented(var, config[CONF_TOTO_ID])
+        cg.add(TotoIR_component.set_reset_timer_active_binary_sensor(var))
