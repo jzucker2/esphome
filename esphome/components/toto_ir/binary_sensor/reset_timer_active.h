@@ -7,7 +7,7 @@ namespace esphome {
 namespace toto_ir {
 
 class ResetTimerActive : binary_sensor::BinarySensor, public Parented<TotoIR> {
- public:
+  // public:
   //  void setup() override;
   //  void dump_config() override;
 };
