@@ -21,13 +21,6 @@ void VornadoIR::send_power_toggle() {
   this->transmit_(TOTO_IR_THIRD_POWER_TIMINGS);
 }
 
-void VornadoIR::send_power_toggle() {
-  ESP_LOGI(TAG, "Sending power toggle request");
-  this->transmit_(TOTO_IR_FIRST_POWER_TIMINGS);
-  this->transmit_(TOTO_IR_SECOND_POWER_TIMINGS);
-  this->transmit_(TOTO_IR_THIRD_POWER_TIMINGS);
-}
-
 void VornadoIR::send_change_direction() {
   ESP_LOGI(TAG, "Sending change direction request");
   this->transmit_(TOTO_IR_FIRST_POWER_TIMINGS);
