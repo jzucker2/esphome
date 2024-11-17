@@ -19,8 +19,10 @@ class VornadoIR : public Component, public remote_base::RemoteTransmittable {
   // general functions
   void transmit_(RawTimings ir_code);
   // direct actions
-  void send_power_toggle(bool reset_timer = false);
-  void send_start_fans(bool reset_timer = false);
+  void send_power_toggle();
+  void send_change_direction();
+  void send_increase();
+  void send_decrease();
 };
 
 }  // namespace vornado_ir

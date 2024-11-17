@@ -6,9 +6,9 @@
 namespace esphome {
 namespace vornado_ir {
 
-class FanButton : public button::Button, public Parented<VornadoIR> {
+class IncreaseButton : public button::Button, public Parented<VornadoIR> {
  public:
-  FanButton() = default;
+  IncreaseButton() = default;
 
  protected:
   void press_action() override;

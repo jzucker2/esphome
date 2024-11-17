@@ -12,19 +12,41 @@ void VornadoIR::setup() { ESP_LOGCONFIG(TAG, "Setting up VornadoIR ..."); }
 
 void VornadoIR::loop() {}
 
-void VornadoIR::dump_config() { ESP_LOGCONFIG(TAG, "Toto IR"); }
+void VornadoIR::dump_config() { ESP_LOGCONFIG(TAG, "Vornado IR"); }
 
-void VornadoIR::send_power_toggle(bool reset_timer) {
+void VornadoIR::send_power_toggle() {
   ESP_LOGI(TAG, "Sending power toggle request");
   this->transmit_(TOTO_IR_FIRST_POWER_TIMINGS);
   this->transmit_(TOTO_IR_SECOND_POWER_TIMINGS);
   this->transmit_(TOTO_IR_THIRD_POWER_TIMINGS);
 }
 
-void VornadoIR::send_start_fans(bool reset_timer) {
-  ESP_LOGI(TAG, "Sending start fans request");
-  this->transmit_(TOTO_IR_FIRST_FAN_TIMINGS);
-  this->transmit_(TOTO_IR_SECOND_FAN_TIMINGS);
+void VornadoIR::send_power_toggle() {
+  ESP_LOGI(TAG, "Sending power toggle request");
+  this->transmit_(TOTO_IR_FIRST_POWER_TIMINGS);
+  this->transmit_(TOTO_IR_SECOND_POWER_TIMINGS);
+  this->transmit_(TOTO_IR_THIRD_POWER_TIMINGS);
+}
+
+void VornadoIR::send_change_direction() {
+  ESP_LOGI(TAG, "Sending change direction request");
+  this->transmit_(TOTO_IR_FIRST_POWER_TIMINGS);
+  this->transmit_(TOTO_IR_SECOND_POWER_TIMINGS);
+  this->transmit_(TOTO_IR_THIRD_POWER_TIMINGS);
+}
+
+void VornadoIR::send_increase() {
+  ESP_LOGI(TAG, "Sending increase request");
+  this->transmit_(TOTO_IR_FIRST_POWER_TIMINGS);
+  this->transmit_(TOTO_IR_SECOND_POWER_TIMINGS);
+  this->transmit_(TOTO_IR_THIRD_POWER_TIMINGS);
+}
+
+void VornadoIR::send_decrease() {
+  ESP_LOGI(TAG, "Sending decrease request");
+  this->transmit_(TOTO_IR_FIRST_POWER_TIMINGS);
+  this->transmit_(TOTO_IR_SECOND_POWER_TIMINGS);
+  this->transmit_(TOTO_IR_THIRD_POWER_TIMINGS);
 }
 
 void VornadoIR::transmit_(RawTimings ir_code) {
