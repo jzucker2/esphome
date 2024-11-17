@@ -18,9 +18,9 @@ CONF_DECREASE = "decrease"
 
 # Additional icons
 ICON_POWER_TOGGLE = "mdi:power-cycle"
-ICON_CHANGE_DIRECTION = "mdi:power-cycle"
-ICON_INCREASE = "mdi:power-cycle"
-ICON_DECREASE = "mdi:power-cycle"
+ICON_CHANGE_DIRECTION = "mdi:swap-horizontal"
+ICON_INCREASE = "mdi:fan-plus"
+ICON_DECREASE = "mdi:fan-minus"
 
 CONFIG_SCHEMA = cv.Schema(
     {
