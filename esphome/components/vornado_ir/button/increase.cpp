@@ -1,4 +1,4 @@
-#include "power.h"
+#include "increase.h"
 
 namespace esphome {
 namespace vornado_ir {

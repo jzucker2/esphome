@@ -1,4 +1,4 @@
-#include "power.h"
+#include "change_direction.h"
 
 namespace esphome {
 namespace vornado_ir {
