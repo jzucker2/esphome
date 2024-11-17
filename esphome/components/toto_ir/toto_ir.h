@@ -93,14 +93,14 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   void set_configuration(const TotoConfig &config, bool reset_timer = false);
   void reset_configuration(bool reset_timer = false);
 #ifdef USE_SELECT
-  SUB_SELECT(water_pressure_select);
-  SUB_SELECT(water_position_select);
-  SUB_SELECT(water_temperature_select);
-  SUB_SELECT(fan_temperature_select);
-  SUB_SELECT(seat_temperature_select);
+  SUB_SELECT(water_pressure_select)
+  SUB_SELECT(water_position_select)
+  SUB_SELECT(water_temperature_select)
+  SUB_SELECT(fan_temperature_select)
+  SUB_SELECT(seat_temperature_select)
 #endif
 #ifdef USE_BINARY_SENSOR
-  SUB_BINARY_SENSOR(reset_timer_active_binary_sensor);
+  SUB_BINARY_SENSOR(reset_timer_active_binary_sensor)
 #endif
  protected:
   // reset timer
