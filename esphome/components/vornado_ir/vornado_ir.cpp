@@ -16,30 +16,22 @@ void VornadoIR::dump_config() { ESP_LOGCONFIG(TAG, "Vornado IR"); }
 
 void VornadoIR::send_power_toggle() {
   ESP_LOGI(TAG, "Sending power toggle request");
-  this->transmit_(TOTO_IR_FIRST_POWER_TIMINGS);
-  this->transmit_(TOTO_IR_SECOND_POWER_TIMINGS);
-  this->transmit_(TOTO_IR_THIRD_POWER_TIMINGS);
+  this->transmit_(VORNADO_IR_POWER_TOGGLE_TIMINGS);
 }
 
 void VornadoIR::send_change_direction() {
   ESP_LOGI(TAG, "Sending change direction request");
-  this->transmit_(TOTO_IR_FIRST_POWER_TIMINGS);
-  this->transmit_(TOTO_IR_SECOND_POWER_TIMINGS);
-  this->transmit_(TOTO_IR_THIRD_POWER_TIMINGS);
+  this->transmit_(VORNADO_IR_CHANGE_DIRECTION_TIMINGS);
 }
 
 void VornadoIR::send_increase() {
   ESP_LOGI(TAG, "Sending increase request");
-  this->transmit_(TOTO_IR_FIRST_POWER_TIMINGS);
-  this->transmit_(TOTO_IR_SECOND_POWER_TIMINGS);
-  this->transmit_(TOTO_IR_THIRD_POWER_TIMINGS);
+  this->transmit_(VORNADO_IR_INCREASE_TIMINGS);
 }
 
 void VornadoIR::send_decrease() {
   ESP_LOGI(TAG, "Sending decrease request");
-  this->transmit_(TOTO_IR_FIRST_POWER_TIMINGS);
-  this->transmit_(TOTO_IR_SECOND_POWER_TIMINGS);
-  this->transmit_(TOTO_IR_THIRD_POWER_TIMINGS);
+  this->transmit_(VORNADO_IR_DECREASE_TIMINGS);
 }
 
 void VornadoIR::transmit_(RawTimings ir_code) {
@@ -50,7 +42,7 @@ void VornadoIR::transmit_(RawTimings ir_code) {
   data->set_data(ir_code);
   data->set_carrier_frequency(38000);
   transmit.set_send_times(3);
-  transmit.set_send_wait(40000);
+  transmit.set_send_wait(7);
   ESP_LOGD(TAG, "Sending ir_code actual perform transmit");
   transmit.perform();
 }
