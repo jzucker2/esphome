@@ -70,18 +70,6 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   void set_reset_timer_duration_seconds(int reset_timer_duration_seconds) {
     this->reset_timer_duration_seconds_ = reset_timer_duration_seconds;
   }
-#ifdef USE_SELECT
-  void set_water_pressure_select(select::Select *selector) { this->water_pressure_selector_ = selector; };
-  void set_water_position_select(select::Select *selector) { this->water_position_selector_ = selector; };
-  void set_water_temperature_select(select::Select *selector) { this->water_temperature_selector_ = selector; };
-  void set_fan_temperature_select(select::Select *selector) { this->fan_temperature_selector_ = selector; };
-  void set_seat_temperature_select(select::Select *selector) { this->seat_temperature_selector_ = selector; };
-#endif
-#ifdef USE_BINARY_SENSOR
-  void set_reset_timer_active_binary_sensor(binary_sensor::BinarySensor *binary_sensor) {
-    this->reset_timer_active_binary_sensor_ = binary_sensor;
-  };
-#endif
   // direct actions
   void send_power_toggle(bool reset_timer = false);
   void send_rear_wash(bool reset_timer = false);
@@ -105,14 +93,14 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   void set_configuration(const TotoConfig &config, bool reset_timer = false);
   void reset_configuration(bool reset_timer = false);
 #ifdef USE_SELECT
-  select::Select *water_pressure_selector_{nullptr};
-  select::Select *water_position_selector_{nullptr};
-  select::Select *water_temperature_selector_{nullptr};
-  select::Select *fan_temperature_selector_{nullptr};
-  select::Select *seat_temperature_selector_{nullptr};
+  SUB_SELECT(water_pressure_select);
+  SUB_SELECT(water_position_select);
+  SUB_SELECT(water_temperature_select);
+  SUB_SELECT(fan_temperature_select);
+  SUB_SELECT(seat_temperature_select);
 #endif
 #ifdef USE_BINARY_SENSOR
-  binary_sensor::BinarySensor *reset_timer_active_binary_sensor_{nullptr};
+  SUB_BINARY_SENSOR(reset_timer_active_binary_sensor);
 #endif
  protected:
   // reset timer
