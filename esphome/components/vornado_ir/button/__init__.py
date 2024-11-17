@@ -33,11 +33,11 @@ CONFIG_SCHEMA = cv.Schema(
             ChangeDirectionButton,
             icon=ICON_CHANGE_DIRECTION,
         ),
-        cv.Optional(ICON_INCREASE): button.button_schema(
+        cv.Optional(CONF_INCREASE): button.button_schema(
             IncreaseButton,
             icon=ICON_INCREASE,
         ),
-        cv.Optional(ICON_DECREASE): button.button_schema(
+        cv.Optional(CONF_DECREASE): button.button_schema(
             DecreaseButton,
             icon=ICON_DECREASE,
         ),
