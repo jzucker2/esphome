@@ -17,7 +17,7 @@ class VornadoIR : public Component, public remote_base::RemoteTransmittable {
   void loop() override;
   void dump_config() override;
   // general functions
-  void transmit_(const RawTimings ir_code);
+  void transmit_(RawTimings ir_code);
   // direct actions
   void send_power_toggle();
   void send_change_direction();
