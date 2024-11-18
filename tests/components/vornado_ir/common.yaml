@@ -8,7 +8,7 @@ vornado_ir:
 button:
   - platform: vornado_ir
     vornado_id: vornado_ir_remote
-    power:
+    power_toggle:
       name: Vornado IR Power Toggle
     change_direction:
       name: Vornado IR Change Direction

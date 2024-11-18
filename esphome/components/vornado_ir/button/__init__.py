@@ -11,7 +11,7 @@ IncreaseButton = vornado_ir_ns.class_("IncreaseButton", button.Button)
 DecreaseButton = vornado_ir_ns.class_("DecreaseButton", button.Button)
 
 # Vornado IR buttons
-CONF_POWER = "power"
+CONF_POWER_TOGGLE = "power_toggle"
 CONF_CHANGE_DIRECTION = "change_direction"
 CONF_INCREASE = "increase"
 CONF_DECREASE = "decrease"
@@ -25,7 +25,7 @@ ICON_DECREASE = "mdi:fan-minus"
 CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(CONF_VORNADO_ID): cv.use_id(VornadoIR),
-        cv.Optional(CONF_POWER): button.button_schema(
+        cv.Optional(CONF_POWER_TOGGLE): button.button_schema(
             PowerButton,
             icon=ICON_POWER_TOGGLE,
         ),
@@ -47,7 +47,7 @@ CONFIG_SCHEMA = cv.Schema(
 
 async def to_code(config):
     for button_type in [
-        CONF_POWER,
+        CONF_POWER_TOGGLE,
         CONF_CHANGE_DIRECTION,
         CONF_INCREASE,
         CONF_DECREASE,
