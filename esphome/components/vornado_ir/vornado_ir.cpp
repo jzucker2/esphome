@@ -6,7 +6,7 @@
 namespace esphome {
 namespace vornado_ir {
 
-static const char *TAG = "vornado_ir";
+static const char *const TAG = "vornado_ir";
 
 void VornadoIR::setup() { ESP_LOGCONFIG(TAG, "Setting up VornadoIR ..."); }
 
@@ -34,11 +34,11 @@ void VornadoIR::send_decrease() {
   this->transmit_(VORNADO_IR_DECREASE_TIMINGS);
 }
 
-void VornadoIR::transmit_(RawTimings ir_code) {
+void VornadoIR::transmit_(const RawTimings &ir_code) {
   ESP_LOGD(TAG, "Sending ir_code");
   auto transmit = this->transmitter_->transmit();
   ESP_LOGD(TAG, "Sending ir_code got transmitter");
-  auto data = transmit.get_data();
+  auto *data = transmit.get_data();
   data->set_data(ir_code);
   data->set_carrier_frequency(38000);
   transmit.set_send_times(3);
