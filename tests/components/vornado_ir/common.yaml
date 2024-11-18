@@ -16,3 +16,5 @@ button:
       name: Vornado IR Increase
     decrease:
       name: Vornado IR Decrease
+    dummy:
+      name: Vornado IR Dummy

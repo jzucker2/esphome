@@ -9,18 +9,21 @@ PowerButton = vornado_ir_ns.class_("PowerButton", button.Button)
 ChangeDirectionButton = vornado_ir_ns.class_("ChangeDirectionButton", button.Button)
 IncreaseButton = vornado_ir_ns.class_("IncreaseButton", button.Button)
 DecreaseButton = vornado_ir_ns.class_("DecreaseButton", button.Button)
+DummyButton = vornado_ir_ns.class_("DummyButton", button.Button)
 
 # Vornado IR buttons
 CONF_POWER_TOGGLE = "power_toggle"
 CONF_CHANGE_DIRECTION = "change_direction"
 CONF_INCREASE = "increase"
 CONF_DECREASE = "decrease"
+CONF_DUMMY = "dummy"
 
 # Additional icons
 ICON_POWER_TOGGLE = "mdi:power-cycle"
 ICON_CHANGE_DIRECTION = "mdi:swap-horizontal"
 ICON_INCREASE = "mdi:fan-plus"
 ICON_DECREASE = "mdi:fan-minus"
+ICON_DUMMY = "mdi:fan"
 
 CONFIG_SCHEMA = cv.Schema(
     {
@@ -41,6 +44,10 @@ CONFIG_SCHEMA = cv.Schema(
             DecreaseButton,
             icon=ICON_DECREASE,
         ),
+        cv.Optional(CONF_DUMMY): button.button_schema(
+            DummyButton,
+            icon=ICON_DUMMY,
+        ),
     }
 ).extend(cv.COMPONENT_SCHEMA)
 
@@ -51,6 +58,7 @@ async def to_code(config):
         CONF_CHANGE_DIRECTION,
         CONF_INCREASE,
         CONF_DECREASE,
+        CONF_DUMMY,
     ]:
         if conf := config.get(button_type):
             btn = await button.new_button(conf)
