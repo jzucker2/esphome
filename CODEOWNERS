@@ -434,6 +434,10 @@ esphome/components/tmp1075/* @sybrenstuvel
 esphome/components/tmp117/* @Azimath
 esphome/components/tof10120/* @wstrzalka
 esphome/components/toshiba/* @kbx81
+esphome/components/toto_ir/* @jzucker2
+esphome/components/toto_ir/binary_sensor/* @jzucker2
+esphome/components/toto_ir/button/* @jzucker2
+esphome/components/toto_ir/select/* @jzucker2
 esphome/components/touchscreen/* @jesserockz @nielsnl68
 esphome/components/tsl2591/* @wjcarpenter
 esphome/components/tt21100/* @kroimon

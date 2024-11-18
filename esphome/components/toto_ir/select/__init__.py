@@ -4,6 +4,7 @@ import esphome.config_validation as cv
 
 from .. import CONF_TOTO_ID, TotoIR, toto_ir_ns
 
+CODEOWNERS = ["@jzucker2"]
 CONF_WATER_PRESSURE = "water_pressure"
 CONF_WATER_POSITION = "water_position"
 CONF_WATER_TEMPERATURE = "water_temperature"
