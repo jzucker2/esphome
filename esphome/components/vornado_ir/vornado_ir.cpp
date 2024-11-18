@@ -34,6 +34,11 @@ void VornadoIR::send_decrease() {
   this->transmit_(VORNADO_IR_DECREASE_TIMINGS);
 }
 
+void VornadoIR::send_dummy() {
+  ESP_LOGI(TAG, "Sending dummy request");
+  this->transmit_(VORNADO_IR_DUMMY_TIMINGS);
+}
+
 void VornadoIR::transmit_(RawTimings ir_code) {
   ESP_LOGD(TAG, "Sending ir_code");
   auto transmit = this->transmitter_->transmit();

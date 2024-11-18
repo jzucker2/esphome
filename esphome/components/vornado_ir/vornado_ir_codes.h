@@ -49,5 +49,7 @@ const remote_base::RawTimings VORNADO_IR_DECREASE_TIMINGS = {
     424,  -1261, 424,  -1261, 424, -1262, 423,  -1263, 1267, -443,  398, -8106, 1271, -442,  1242, -419,  422, -1261,
     1268, -443,  1242, -443,  397, -1262, 423,  -1263, 423,  -1263, 422, -1261, 424,  -1262, 1268, -443,  397};
 
+const remote_base::RawTimings VORNADO_IR_DUMMY_TIMINGS = {1000, -1000, 1000, -1000, 1000};
+
 }  // namespace vornado_ir
 }  // namespace esphome

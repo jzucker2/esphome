@@ -23,6 +23,7 @@ class VornadoIR : public Component, public remote_base::RemoteTransmittable {
   void send_change_direction();
   void send_increase();
   void send_decrease();
+  void send_dummy();
 };
 
 }  // namespace vornado_ir
