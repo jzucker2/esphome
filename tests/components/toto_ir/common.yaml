@@ -20,7 +20,7 @@ button:
       name: Toto IR Feminine Wash
     fan:
       name: Toto IR Fan
-    power:
+    power_toggle:
       name: Toto IR Power Toggle
     stop:
       name: Toto IR Stop

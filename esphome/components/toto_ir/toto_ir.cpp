@@ -6,8 +6,8 @@
 namespace esphome {
 namespace toto_ir {
 
-static const char *TAG = "toto_ir";
-static const char *TOTO_IR_RESET_TIMER = "toto_ir_reset_timer";
+static const char *const TAG = "toto_ir";
+static const char *const TOTO_IR_RESET_TIMER = "toto_ir_reset_timer";
 
 void TotoIR::setup() {
   ESP_LOGCONFIG(TAG, "Setting up TotoIR ...");
@@ -107,15 +107,15 @@ void TotoIR::send_pulsating_cleansing(bool reset_timer) {
   }
 }
 
-void TotoIR::transmit_(RawTimings ir_code) {
+void VornadoIR::transmit_(const RawTimings &ir_code) {
   ESP_LOGD(TAG, "Sending ir_code");
   auto transmit = this->transmitter_->transmit();
   ESP_LOGD(TAG, "Sending ir_code got transmitter");
-  auto data = transmit.get_data();
+  auto *data = transmit.get_data();
   data->set_data(ir_code);
   data->set_carrier_frequency(38000);
   transmit.set_send_times(3);
-  transmit.set_send_wait(40000);
+  transmit.set_send_wait(7);
   ESP_LOGD(TAG, "Sending ir_code actual perform transmit");
   transmit.perform();
 }

@@ -23,7 +23,7 @@ CONF_REAR_WASH = "rear_wash"
 CONF_FEMININE_WASH = "feminine_wash"
 CONF_FAN = "fan"
 CONF_STOP = "stop"
-CONF_POWER = "power"
+CONF_POWER_TOGGLE = "power_toggle"
 CONF_OSCILLATING_CLEANSING = "oscillating_cleansing"
 CONF_PULSATING_CLEANSING = "pulsating_cleansing"
 CONF_RESET = "reset"
@@ -67,7 +67,7 @@ CONFIG_SCHEMA = cv.Schema(
             StopButton,
             icon=ICON_STOP,
         ),
-        cv.Optional(CONF_POWER): button.button_schema(
+        cv.Optional(CONF_POWER_TOGGLE): button.button_schema(
             PowerButton,
             icon=ICON_POWER_TOGGLE,
         ),
@@ -115,7 +115,7 @@ async def to_code(config):
         CONF_FEMININE_WASH,
         CONF_FAN,
         CONF_STOP,
-        CONF_POWER,
+        CONF_POWER_TOGGLE,
         CONF_OSCILLATING_CLEANSING,
         CONF_PULSATING_CLEANSING,
         CONF_RESET,
