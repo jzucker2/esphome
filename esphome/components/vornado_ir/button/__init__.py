@@ -23,7 +23,7 @@ ICON_POWER_TOGGLE = "mdi:power-cycle"
 ICON_CHANGE_DIRECTION = "mdi:swap-horizontal"
 ICON_INCREASE = "mdi:fan-plus"
 ICON_DECREASE = "mdi:fan-minus"
-ICON_DUMMY = "mdi:fan"
+ICON_DUMMY = "mdi:sleep-off"
 
 CONFIG_SCHEMA = cv.Schema(
     {
