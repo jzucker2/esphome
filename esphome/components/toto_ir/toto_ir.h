@@ -66,7 +66,7 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   void loop() override;
   void dump_config() override;
   // general functions
-  void transmit_(RawTimings ir_code);
+  void transmit_(const RawTimings &ir_code);
   void set_reset_timer_duration_seconds(int reset_timer_duration_seconds) {
     this->reset_timer_duration_seconds_ = reset_timer_duration_seconds;
   }
