@@ -107,7 +107,7 @@ void TotoIR::send_pulsating_cleansing(bool reset_timer) {
   }
 }
 
-void TotoIR::transmit_(const RawTimings &ir_code) {
+void TotoIR::transmit_(RawTimings ir_code) {
   ESP_LOGD(TAG, "Sending ir_code");
   auto transmit = this->transmitter_->transmit();
   ESP_LOGD(TAG, "Sending ir_code got transmitter");
@@ -115,7 +115,7 @@ void TotoIR::transmit_(const RawTimings &ir_code) {
   data->set_data(ir_code);
   data->set_carrier_frequency(38000);
   transmit.set_send_times(3);
-  transmit.set_send_wait(40);
+  transmit.set_send_wait(40000);
   ESP_LOGD(TAG, "Sending ir_code actual perform transmit");
   transmit.perform();
 }
