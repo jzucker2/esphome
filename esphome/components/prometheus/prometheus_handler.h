@@ -128,6 +128,14 @@ class PrometheusHandler : public AsyncWebHandler, public Component {
                         std::string &friendly_name);
 #endif
 
+#ifdef USE_NUMBER
+  /// Return the type for prometheus
+  void number_type_(AsyncResponseStream *stream);
+  /// Return the sensor state as prometheus data point
+  void number_row_(AsyncResponseStream *stream, number::Number *obj, std::string &area, std::string &node,
+                   std::string &friendly_name);
+#endif
+
 #ifdef USE_SELECT
   /// Return the type for prometheus
   void select_type_(AsyncResponseStream *stream);
