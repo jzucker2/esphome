@@ -552,7 +552,7 @@ void PrometheusHandler::number_row_(AsyncResponseStream *stream, number::Number 
     stream->print(F("\",name=\""));
     stream->print(relabel_name_(obj).c_str());
     stream->print(F("\"} "));
-    stream->print(value_accuracy_to_string(obj->state, obj->get_accuracy_decimals()).c_str());
+    stream->print(obj->state);
     stream->print(F("\n"));
   } else {
     // Invalid state
