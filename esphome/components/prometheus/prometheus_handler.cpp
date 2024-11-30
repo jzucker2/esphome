@@ -59,6 +59,12 @@ void PrometheusHandler::handleRequest(AsyncWebServerRequest *req) {
     this->text_sensor_row_(stream, obj, area, node, friendly_name);
 #endif
 
+#ifdef USE_SELECT
+  this->select_type_(stream);
+  for (auto *obj : App.get_selects())
+    this->select_row_(stream, obj, area, node, friendly_name);
+#endif
+
   req->send(stream);
 }
 
@@ -500,6 +506,52 @@ void PrometheusHandler::text_sensor_row_(AsyncResponseStream *stream, text_senso
   } else {
     // Invalid state
     stream->print(F("esphome_text_sensor_failed{id=\""));
+    stream->print(relabel_id_(obj).c_str());
+    add_area_label_(stream, area);
+    add_node_label_(stream, node);
+    add_friendly_name_label_(stream, friendly_name);
+    stream->print(F("\",name=\""));
+    stream->print(relabel_name_(obj).c_str());
+    stream->print(F("\"} 1\n"));
+  }
+}
+#endif
+
+#ifdef USE_SELECT
+void PrometheusHandler::select_type_(AsyncResponseStream *stream) {
+  stream->print(F("#TYPE esphome_select_value gauge\n"));
+  stream->print(F("#TYPE esphome_select_failed gauge\n"));
+}
+void PrometheusHandler::select_row_(AsyncResponseStream *stream, select::Select *obj, std::string &area,
+                                    std::string &node, std::string &friendly_name) {
+  if (obj->is_internal() && !this->include_internal_)
+    return;
+  if (obj->has_state()) {
+    // We have a valid value, output this value
+    stream->print(F("esphome_select_failed{id=\""));
+    stream->print(relabel_id_(obj).c_str());
+    add_area_label_(stream, area);
+    add_node_label_(stream, node);
+    add_friendly_name_label_(stream, friendly_name);
+    stream->print(F("\",name=\""));
+    stream->print(relabel_name_(obj).c_str());
+    stream->print(F("\"} 0\n"));
+    // Data itself
+    stream->print(F("esphome_select_value{id=\""));
+    stream->print(relabel_id_(obj).c_str());
+    add_area_label_(stream, area);
+    add_node_label_(stream, node);
+    add_friendly_name_label_(stream, friendly_name);
+    stream->print(F("\",name=\""));
+    stream->print(relabel_name_(obj).c_str());
+    stream->print(F("\",value=\""));
+    stream->print(obj->state.c_str());
+    stream->print(F("\"} "));
+    stream->print(F("1.0"));
+    stream->print(F("\n"));
+  } else {
+    // Invalid state
+    stream->print(F("esphome_select_failed{id=\""));
     stream->print(relabel_id_(obj).c_str());
     add_area_label_(stream, area);
     add_node_label_(stream, node);

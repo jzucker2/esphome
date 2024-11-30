@@ -78,6 +78,17 @@ lock:
       }
     optimistic: true
 
+select:
+  - platform: template
+    id: template_select1
+    name: "Template select"
+    optimistic: true
+    options:
+      - one
+      - two
+      - three
+    initial_option: two
+
 prometheus:
   include_internal: true
   relabel:
