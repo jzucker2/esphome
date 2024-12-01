@@ -88,6 +88,14 @@ class PrometheusHandler : public AsyncWebHandler, public Component {
                 std::string &friendly_name);
 #endif
 
+#ifdef USE_CLIMATE
+  /// Return the type for prometheus
+  void climate_type_(AsyncResponseStream *stream);
+  /// Return the sensor state as prometheus data point
+  void climate_row_(AsyncResponseStream *stream, climate::Climate *obj, std::string &area, std::string &node,
+                    std::string &friendly_name);
+#endif
+
 #ifdef USE_LIGHT
   /// Return the type for prometheus
   void light_type_(AsyncResponseStream *stream);

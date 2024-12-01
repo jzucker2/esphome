@@ -29,6 +29,12 @@ void PrometheusHandler::handleRequest(AsyncWebServerRequest *req) {
     this->fan_row_(stream, obj, area, node, friendly_name);
 #endif
 
+#ifdef USE_CLIMATE
+  this->climate_type_(stream);
+  for (auto *obj : App.get_climates())
+    this->climate_row_(stream, obj, area, node, friendly_name);
+#endif
+
 #ifdef USE_LIGHT
   this->light_type_(stream);
   for (auto *obj : App.get_lights())
@@ -243,6 +249,65 @@ void PrometheusHandler::fan_row_(AsyncResponseStream *stream, fan::Fan *obj, std
   // Oscillation if available
   if (obj->get_traits().supports_oscillation()) {
     stream->print(F("esphome_fan_oscillation{id=\""));
+    stream->print(relabel_id_(obj).c_str());
+    add_area_label_(stream, area);
+    add_node_label_(stream, node);
+    add_friendly_name_label_(stream, friendly_name);
+    stream->print(F("\",name=\""));
+    stream->print(relabel_name_(obj).c_str());
+    stream->print(F("\"} "));
+    stream->print(obj->oscillating);
+    stream->print(F("\n"));
+  }
+}
+#endif
+
+#ifdef USE_CLIMATE
+void PrometheusHandler::climate_type_(AsyncResponseStream *stream) {
+  stream->print(F("#TYPE esphome_climate_value gauge\n"));
+  stream->print(F("#TYPE esphome_climate_failed gauge\n"));
+  stream->print(F("#TYPE esphome_climate_current_temperature gauge\n"));
+  stream->print(F("#TYPE esphome_climate_target_temperature gauge\n"));
+}
+void PrometheusHandler::climate_row_(AsyncResponseStream *stream, climate::Climate *obj, std::string &area,
+                                     std::string &node, std::string &friendly_name) {
+  if (obj->is_internal() && !this->include_internal_)
+    return;
+  stream->print(F("esphome_climate_failed{id=\""));
+  stream->print(relabel_id_(obj).c_str());
+  add_area_label_(stream, area);
+  add_node_label_(stream, node);
+  add_friendly_name_label_(stream, friendly_name);
+  stream->print(F("\",name=\""));
+  stream->print(relabel_name_(obj).c_str());
+  stream->print(F("\"} 0\n"));
+  // Data itself
+  stream->print(F("esphome_climate_value{id=\""));
+  stream->print(relabel_id_(obj).c_str());
+  add_area_label_(stream, area);
+  add_node_label_(stream, node);
+  add_friendly_name_label_(stream, friendly_name);
+  stream->print(F("\",name=\""));
+  stream->print(relabel_name_(obj).c_str());
+  stream->print(F("\"} "));
+  stream->print(obj->state);
+  stream->print(F("\n"));
+  // Speed if available
+  if (obj->get_traits().get_supports_current_temperature()) {
+    stream->print(F("esphome_climate_current_temperature{id=\""));
+    stream->print(relabel_id_(obj).c_str());
+    add_area_label_(stream, area);
+    add_node_label_(stream, node);
+    add_friendly_name_label_(stream, friendly_name);
+    stream->print(F("\",name=\""));
+    stream->print(relabel_name_(obj).c_str());
+    stream->print(F("\"} "));
+    stream->print(obj->speed);
+    stream->print(F("\n"));
+  }
+  // Oscillation if available
+  if (obj->get_traits().get_supports_target_temperature()) {
+    stream->print(F("esphome_climate_target_temperature{id=\""));
     stream->print(relabel_id_(obj).c_str());
     add_area_label_(stream, area);
     add_node_label_(stream, node);
