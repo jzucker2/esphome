@@ -690,8 +690,8 @@ void PrometheusHandler::update_entity_type_(AsyncResponseStream *stream) {
   stream->print(F("#TYPE esphome_update_entity_value gauge\n"));
   stream->print(F("#TYPE esphome_update_entity_failed gauge\n"));
 }
-void PrometheusHandler::update_entity_row_(AsyncResponseStream *stream, select::Select *obj, std::string &area,
-                                           std::string &node, std::string &friendly_name) {
+void PrometheusHandler::update_entity_row_(AsyncResponseStream *stream, update_entity::UpdateEntity *obj,
+                                           std::string &area, std::string &node, std::string &friendly_name) {
   if (obj->is_internal() && !this->include_internal_)
     return;
   if (obj->has_state()) {
