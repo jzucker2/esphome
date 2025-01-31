@@ -158,7 +158,7 @@ class PrometheusHandler : public AsyncWebHandler, public Component {
   /// Return the update state and info as prometheus data point
   void update_entity_row_(AsyncResponseStream *stream, update::UpdateEntity *obj, std::string &area, std::string &node,
                           std::string &friendly_name);
-  void handle_update_state_(AsyncResponseStream *stream, UpdateState state);
+  void handle_update_state_(AsyncResponseStream *stream, update::UpdateState state);
 #endif
 
   web_server_base::WebServerBase *base_;
