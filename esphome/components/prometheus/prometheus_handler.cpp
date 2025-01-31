@@ -698,13 +698,13 @@ void PrometheusHandler::handle_update_state_(AsyncResponseStream *stream, update
       stream->print("unknown");
       break;
     case update::UpdateState::UPDATE_STATE_NO_UPDATE:
-      stream->print("no update");
+      stream->print("none");
       break;
     case update::UpdateState::UPDATE_STATE_AVAILABLE:
-      stream->print("update available");
+      stream->print("available");
       break;
     case update::UpdateState::UPDATE_STATE_INSTALLING:
-      stream->print("update installing");
+      stream->print("installing");
       break;
     default:
       stream->print("invalid");
