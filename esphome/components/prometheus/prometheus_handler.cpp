@@ -692,18 +692,18 @@ void PrometheusHandler::update_entity_type_(AsyncResponseStream *stream) {
   stream->print(F("#TYPE esphome_update_entity_failed gauge\n"));
 }
 
-void handle_update_state_(AsyncResponseStream *stream, UpdateState state) {
+void handle_update_state_(AsyncResponseStream *stream, update::UpdateState state) {
   switch (state) {
-    case UPDATE_STATE_UNKNOWN:
+    case update::UpdateState::UPDATE_STATE_UNKNOWN:
       stream->print("unknown");
       break;
-    case UPDATE_STATE_NO_UPDATE:
+    case update::UpdateState::UPDATE_STATE_NO_UPDATE:
       stream->print("no update");
       break;
-    case UPDATE_STATE_AVAILABLE:
+    case update::UpdateState::UPDATE_STATE_AVAILABLE:
       stream->print("update available");
       break;
-    case UPDATE_STATE_INSTALLING:
+    case update::UpdateState::UPDATE_STATE_INSTALLING:
       stream->print("update installing");
       break;
     default:
