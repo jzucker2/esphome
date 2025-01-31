@@ -8,9 +8,6 @@
 #include "esphome/core/component.h"
 #include "esphome/core/controller.h"
 #include "esphome/core/entity_base.h"
-#ifdef USE_UPDATE
-#include "esphome/components/update/update_entity.h"
-#endif
 
 namespace esphome {
 namespace prometheus {
@@ -159,8 +156,8 @@ class PrometheusHandler : public AsyncWebHandler, public Component {
   /// Return the type for prometheus
   void update_entity_type_(AsyncResponseStream *stream);
   /// Return the select state as prometheus data point
-  void update_entity_row_(AsyncResponseStream *stream, update_entity::UpdateEntity *obj, std::string &area,
-                          std::string &node, std::string &friendly_name);
+  void update_entity_row_(AsyncResponseStream *stream, update::UpdateEntity *obj, std::string &area, std::string &node,
+                          std::string &friendly_name);
 #endif
 
   web_server_base::WebServerBase *base_;
