@@ -713,7 +713,7 @@ void PrometheusHandler::update_entity_row_(AsyncResponseStream *stream, update::
     stream->print(F("\",name=\""));
     stream->print(relabel_name_(obj).c_str());
     stream->print(F("\",value=\""));
-    stream->print(obj->state.c_str());
+    //    stream->print(obj->state.c_str());
     stream->print(F("\"} "));
     stream->print(F("1.0"));
     stream->print(F("\n"));
