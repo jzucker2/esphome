@@ -75,7 +75,7 @@ class PrometheusHandler : public AsyncWebHandler, public Component {
 #ifdef USE_BINARY_SENSOR
   /// Return the type for prometheus
   void binary_sensor_type_(AsyncResponseStream *stream);
-  /// Return the sensor state as prometheus data point
+  /// Return the binary sensor state as prometheus data point
   void binary_sensor_row_(AsyncResponseStream *stream, binary_sensor::BinarySensor *obj, std::string &area,
                           std::string &node, std::string &friendly_name);
 #endif
@@ -83,7 +83,7 @@ class PrometheusHandler : public AsyncWebHandler, public Component {
 #ifdef USE_FAN
   /// Return the type for prometheus
   void fan_type_(AsyncResponseStream *stream);
-  /// Return the sensor state as prometheus data point
+  /// Return the fan state as prometheus data point
   void fan_row_(AsyncResponseStream *stream, fan::Fan *obj, std::string &area, std::string &node,
                 std::string &friendly_name);
 #endif
@@ -91,7 +91,7 @@ class PrometheusHandler : public AsyncWebHandler, public Component {
 #ifdef USE_LIGHT
   /// Return the type for prometheus
   void light_type_(AsyncResponseStream *stream);
-  /// Return the Light Values state as prometheus data point
+  /// Return the light values state as prometheus data point
   void light_row_(AsyncResponseStream *stream, light::LightState *obj, std::string &area, std::string &node,
                   std::string &friendly_name);
 #endif
