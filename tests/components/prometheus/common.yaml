@@ -121,6 +121,23 @@ number:
     max_value: 100
     step: 1
 
+valve:
+  - platform: template
+    name: "Template Valve"
+    lambda: |-
+      if (id(top_end_stop).state) {
+        return VALVE_OPEN;
+      } else {
+        return VALVE_CLOSED;
+      }
+    open_action:
+      - switch.turn_on: open_valve_switch
+    close_action:
+      - switch.turn_on: close_valve_switch
+    stop_action:
+      - switch.turn_on: stop_valve_switch
+    optimistic: true
+
 prometheus:
   include_internal: true
   relabel:
