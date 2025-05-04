@@ -1,5 +1,7 @@
 #include "personal_setting.h"
 
+#include "esphome/core/log.h"
+
 namespace esphome {
 namespace toto_ir {
 
