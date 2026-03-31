@@ -15,7 +15,6 @@ class VornadoIR : public Component, public remote_base::RemoteTransmittable {
   void send_increase();
   void send_decrease();
 
- protected:
   void transmit_(uint32_t code, uint8_t nbits);
 };
 

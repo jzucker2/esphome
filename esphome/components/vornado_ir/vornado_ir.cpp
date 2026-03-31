@@ -30,11 +30,14 @@ void VornadoIR::send_decrease() {
 }
 
 void VornadoIR::transmit_(uint32_t code, uint8_t nbits) {
+  ESP_LOGD(TAG, "Sending ir_code");
   auto transmit = this->transmitter_->transmit();
+  ESP_LOGD(TAG, "Sending ir_code got transmitter");
   remote_base::SymphonyData data{};
   data.data = code;
   data.nbits = nbits;
   remote_base::SymphonyProtocol().encode(transmit.get_data(), data);
+  ESP_LOGD(TAG, "Sending ir_code actual perform transmit");
   transmit.perform();
 }
 
