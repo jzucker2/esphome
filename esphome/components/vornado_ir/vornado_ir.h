@@ -10,12 +10,13 @@ namespace vornado_ir {
 class VornadoIR : public Component, public remote_base::RemoteTransmittable {
  public:
   void dump_config() override;
+  // general functions
+  void transmit_(uint32_t code, uint8_t nbits);
+  // direct actions
   void send_power_toggle();
   void send_change_direction();
   void send_increase();
   void send_decrease();
-
-  void transmit_(uint32_t code, uint8_t nbits);
 };
 
 }  // namespace vornado_ir
