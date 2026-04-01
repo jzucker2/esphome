@@ -36,6 +36,7 @@ void VornadoIR::transmit_(uint32_t code, uint8_t nbits) {
   remote_base::SymphonyData data{};
   data.data = code;
   data.nbits = nbits;
+  data.repeats = 2;
   remote_base::SymphonyProtocol().encode(transmit.get_data(), data);
   ESP_LOGD(TAG, "Sending ir_code actual perform transmit");
   transmit.perform();
