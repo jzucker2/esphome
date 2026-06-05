@@ -3,8 +3,7 @@
 #include "esphome/components/button/button.h"
 #include "../toto_ir.h"
 
-namespace esphome {
-namespace toto_ir {
+namespace esphome::toto_ir {
 
 class PersonalSettingButton : public button::Button, public Parented<TotoIR> {
  public:
@@ -29,5 +28,4 @@ class PersonalSettingButton : public button::Button, public Parented<TotoIR> {
   std::string seat_temperature_{};
 };
 
-}  // namespace toto_ir
-}  // namespace esphome
+}  // namespace esphome::toto_ir

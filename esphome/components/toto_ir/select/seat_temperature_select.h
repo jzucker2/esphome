@@ -3,8 +3,7 @@
 #include "../toto_ir.h"
 #include "esphome/components/select/select.h"
 
-namespace esphome {
-namespace toto_ir {
+namespace esphome::toto_ir {
 
 class TotoIRSeatTemperatureSelect : public Component, public select::Select, public Parented<TotoIR> {
  public:
@@ -14,5 +13,4 @@ class TotoIRSeatTemperatureSelect : public Component, public select::Select, pub
   void control(const std::string &value) override;
 };
 
-}  // namespace toto_ir
-}  // namespace esphome
+}  // namespace esphome::toto_ir

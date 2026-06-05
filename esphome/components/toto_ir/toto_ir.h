@@ -12,8 +12,7 @@
 #include <map>
 #include <functional>
 
-namespace esphome {
-namespace toto_ir {
+namespace esphome::toto_ir {
 
 using remote_base::RemoteTransmitterBase;
 using remote_base::RawTimings;
@@ -111,5 +110,4 @@ class TotoIR : public Component, public remote_base::RemoteTransmittable {
   bool get_reset_timer_enabled_();
 };
 
-}  // namespace toto_ir
-}  // namespace esphome
+}  // namespace esphome::toto_ir

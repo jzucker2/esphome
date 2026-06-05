@@ -3,8 +3,7 @@
 #include "toto_ir_codes.h"
 #include "esphome/core/application.h"
 
-namespace esphome {
-namespace toto_ir {
+namespace esphome::toto_ir {
 
 static const char *const TAG = "toto_ir";
 static const char *const TOTO_IR_RESET_TIMER = "toto_ir_reset_timer";
@@ -289,5 +288,4 @@ bool TotoIR::set_has_active_reset_timer_(bool active_reset_timer, bool publish_s
   return active_reset_timer;
 };
 
-}  // namespace toto_ir
-}  // namespace esphome
+}  // namespace esphome::toto_ir
