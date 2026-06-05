@@ -3,8 +3,7 @@
 #include "esphome/components/button/button.h"
 #include "../toto_ir.h"
 
-namespace esphome {
-namespace toto_ir {
+namespace esphome::toto_ir {
 
 class OscillatingCleansingButton : public button::Button, public Parented<TotoIR> {
  public:
@@ -14,5 +13,4 @@ class OscillatingCleansingButton : public button::Button, public Parented<TotoIR
   void press_action() override;
 };
 
-}  // namespace toto_ir
-}  // namespace esphome
+}  // namespace esphome::toto_ir

@@ -1,7 +1,6 @@
 #include "personal_setting.h"
 
-namespace esphome {
-namespace toto_ir {
+namespace esphome::toto_ir {
 
 static const char *const TAG = "toto_ir.personal_setting_button";
 
@@ -14,5 +13,4 @@ void PersonalSettingButton::press_action() {
   this->parent_->set_configuration(personal_config, true);
 }
 
-}  // namespace toto_ir
-}  // namespace esphome
+}  // namespace esphome::toto_ir

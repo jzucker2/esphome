@@ -2,8 +2,7 @@
 
 #include "esphome/components/remote_base/remote_base.h"
 
-namespace esphome {
-namespace toto_ir {
+namespace esphome::toto_ir {
 
 // Power Toggle
 const remote_base::RawTimings TOTO_IR_FIRST_POWER_TIMINGS = {
@@ -472,5 +471,4 @@ const remote_base::RawTimings TOTO_IR_SECOND_FAN_TEMPERATURE_LEVEL_3_TIMINGS = {
     -576, 560,   -552, 559,   -1690, 536,   -1687, 536,   -1714, 560,   -553, 559,  -552, 535,  -1715, 535,  -577,
     535,  -1714, 536,  -1688, 536,   -576,  560,   -578,  560,   -552,  559,  -553, 559};
 
-}  // namespace toto_ir
-}  // namespace esphome
+}  // namespace esphome::toto_ir

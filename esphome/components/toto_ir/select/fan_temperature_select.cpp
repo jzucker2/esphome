@@ -2,8 +2,7 @@
 #include "esphome/core/helpers.h"
 #include "esphome/core/log.h"
 
-namespace esphome {
-namespace toto_ir {
+namespace esphome::toto_ir {
 
 static const char *const TAG = "toto_ir.fan_temperature_select";
 
@@ -12,5 +11,4 @@ void TotoIRFanTemperatureSelect::control(const std::string &value) {
   this->parent_->set_fan_temperature(value, true);
 }
 
-}  // namespace toto_ir
-}  // namespace esphome
+}  // namespace esphome::toto_ir
