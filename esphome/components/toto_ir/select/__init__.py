@@ -11,11 +11,11 @@ CONF_WATER_TEMPERATURE = "water_temperature"
 CONF_SEAT_TEMPERATURE = "seat_temperature"
 CONF_FAN_TEMPERATURE = "fan_temperature"
 
-CONF_WATER_POSITION_ICON = "mdi:boom-gate-arrow-up"
-CONF_WATER_PRESSURE_ICON = "mdi:water-plus"
-CONF_WATER_TEMPERATURE_ICON = "mdi:water-thermometer"
-CONF_FAN_TEMPERATURE_ICON = "mdi:thermometer-lines"
-CONF_SEAT_TEMPERATURE_ICON = "mdi:car-seat-heater"
+ICON_WATER_POSITION = "mdi:boom-gate-arrow-up"
+ICON_WATER_PRESSURE = "mdi:water-plus"
+ICON_WATER_TEMPERATURE = "mdi:water-thermometer"
+ICON_FAN_TEMPERATURE = "mdi:thermometer-lines"
+ICON_SEAT_TEMPERATURE = "mdi:car-seat-heater"
 
 CONF_WATER_SELECTS = [
     "1",
@@ -53,23 +53,23 @@ CONFIG_SCHEMA = cv.Schema(
         cv.GenerateID(CONF_TOTO_ID): cv.use_id(TotoIR),
         cv.Required(CONF_WATER_PRESSURE): select.select_schema(
             TotoIRWaterPressureSelect,
-            icon=CONF_WATER_PRESSURE_ICON,
+            icon=ICON_WATER_PRESSURE,
         ),
         cv.Required(CONF_WATER_POSITION): select.select_schema(
             TotoIRWaterPositionSelect,
-            icon=CONF_WATER_POSITION_ICON,
+            icon=ICON_WATER_POSITION,
         ),
         cv.Required(CONF_WATER_TEMPERATURE): select.select_schema(
             TotoIRWaterTemperatureSelect,
-            icon=CONF_WATER_TEMPERATURE_ICON,
+            icon=ICON_WATER_TEMPERATURE,
         ),
         cv.Required(CONF_FAN_TEMPERATURE): select.select_schema(
             TotoIRFanTemperatureSelect,
-            icon=CONF_FAN_TEMPERATURE_ICON,
+            icon=ICON_FAN_TEMPERATURE,
         ),
         cv.Required(CONF_SEAT_TEMPERATURE): select.select_schema(
             TotoIRSeatTemperatureSelect,
-            icon=CONF_SEAT_TEMPERATURE_ICON,
+            icon=ICON_SEAT_TEMPERATURE,
         ),
     }
 ).extend(cv.COMPONENT_SCHEMA)
@@ -104,7 +104,7 @@ async def to_code(config):
             select_func, select_options = select_items
             sel = await select.new_select(
                 select_config,
-                options=[select_options],
+                options=select_options,
             )
             await cg.register_parented(sel, config[CONF_TOTO_ID])
             cg.add(select_func(sel))
