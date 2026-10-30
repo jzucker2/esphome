@@ -58,8 +58,7 @@ void SenseAirComponent::update() {
     ESP_LOGD(TAG, "Discarding 0 ppm reading with out-of-range status.");
     return;
   }
-  if (this->co2_sensor_ != nullptr)
-    this->co2_sensor_->publish_state(ppm);
+  PUBLISH_STATE(this->co2_sensor_, ppm);
 }
 
 void SenseAirComponent::background_calibration() {
@@ -122,7 +121,7 @@ void SenseAirComponent::abc_get_period() {
     return;
   }
 
-  const uint16_t hours = (uint16_t(response[3]) << 8) | response[4];
+  const uint16_t hours = encode_uint16(response[3], response[4]);
   ESP_LOGD(TAG, "SenseAir Read ABC Period: %u hours", hours);
 }
 
