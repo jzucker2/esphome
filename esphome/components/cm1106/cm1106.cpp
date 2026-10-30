@@ -1,5 +1,6 @@
 #include "cm1106.h"
 #include "esphome/core/log.h"
+#include "esphome/core/helpers.h"
 
 #include <cinttypes>
 
@@ -57,7 +58,7 @@ void CM1106Component::update() {
     return;
   }
 
-  const uint16_t ppm = response[3] << 8 | response[4];
+  const uint16_t ppm = encode_uint16(response[3], response[4]);
   const uint8_t status = response[5];
   if (status & 0x1) {
     ESP_LOGW(TAG, "Preheating; CO₂=%uppm", ppm);
@@ -70,8 +71,7 @@ void CM1106Component::update() {
   this->status_clear_warning();
 
   ESP_LOGD(TAG, "CO₂=%uppm DF4=%02X", ppm, response[6]);
-  if (this->co2_sensor_ != nullptr)
-    this->co2_sensor_->publish_state(ppm);
+  PUBLISH_STATE(this->co2_sensor_, ppm);
 }
 
 void CM1106Component::calibrate_zero(uint16_t ppm) {
